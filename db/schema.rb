@@ -10,10 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+ActiveRecord::Schema.define(version: 20180715040945) do
 
-ActiveRecord::Schema.define(version: 20180715032323) do
-
-
+  create_table "favorites", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "question_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "questions", force: :cascade do |t|
     t.string "title"
@@ -22,6 +26,13 @@ ActiveRecord::Schema.define(version: 20180715032323) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "upvotes", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "question_id"
+    t.integer "solution_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -45,14 +56,6 @@ ActiveRecord::Schema.define(version: 20180715032323) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-
-  create_table "upvotes", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "question_id"
-    t.integer "solution_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-
   end
 
 end
