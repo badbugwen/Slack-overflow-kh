@@ -41,6 +41,11 @@ group :development, :test do
   gem 'selenium-webdriver'
   # generate user model
   gem 'devise'
+  # easy styling
+  gem 'bootstrap', '~> 4.1.1'
+  gem 'jquery-rails'
+  # free graphicon
+  gem 'font-awesome-sass', '~> 5.0.13'
 end
 
 group :development do
