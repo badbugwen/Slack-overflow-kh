@@ -1,3 +1,14 @@
 <h1>這是user的show頁面</h1>
-<%= @user.id %>
-<%= @user.name %>
+user name: <%= @user.name %> <br>
+user email: <%= @user.email %> <br>
+user intro: <%= @user.intro %> <br>
+user company: <%= @user.company %> <br>
+user title of job: <%= @user.job_title %> <br>
+user website: <%= @user.website %> <br>
+user twitter: <%= @user.website %> <br>
+user github: <%= @user.github %> <br>
+
+
+<br>
+<br>
+<%= link_to "編輯User的基本資料功能", edit_user_path(current_user) %>
