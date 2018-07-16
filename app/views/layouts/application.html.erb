@@ -25,6 +25,9 @@
             </span>
           </li>
           <li class="nav-item">
+            <%= link_to'Profile', user_path(current_user), class: "nav-link" %>
+          </li>
+          <li class="nav-item">
             <%= link_to'登出', destroy_user_session_path, method: :delete, class: "nav-link" %>
           </li>
           <li class="nav-item">
