@@ -9,7 +9,7 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @question = Question.new(restaurant_params)
+    @question = Question.new(question_params)
     if @question.save
       flash[:notice] = "Question was successfully created"
       redirect_to questions_url
@@ -22,6 +22,6 @@ class QuestionsController < ApplicationController
   private
 
   def question_params
-    params.require(:question).permit(:title, :description)
+    params.require(:question).permit(:title, :content)
   end
 end
