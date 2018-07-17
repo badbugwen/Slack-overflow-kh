@@ -1,14 +1,77 @@
-<h1>這是user的show頁面</h1>
-user name: <%= @user.name %> <br>
-user email: <%= @user.email %> <br>
-user intro: <%= @user.intro %> <br>
-user company: <%= @user.company %> <br>
-user title of job: <%= @user.job_title %> <br>
-user website: <%= @user.website %> <br>
-user twitter: <%= @user.website %> <br>
-user github: <%= @user.github %> <br>
-
-
-<br>
-<br>
-<%= link_to "編輯User的基本資料功能", edit_user_path(current_user) %>
+<div class="container">
+  <!-- user info -->
+  <div class="row">
+    <div class="col-12 col-md-8">
+      <div class="card">
+      <% if current_user == @user %>
+        <div class="card-header text-right">
+          <ul class="list-inline">
+            <li class="list-inline-item">
+              <%= link_to edit_user_path(current_user), class: "btn btn-outline-dark" do %>
+                <i class="fas fa-user-edit fa-lg"></i>&nbsp;Edit Profile
+              <% end %>
+            </li>
+            <li class="list-inline-item">  
+              <%= link_to edit_user_password_path(current_user), class: "btn btn-outline-dark" do %>
+                <i class="fas fa-user-lock fa-lg"></i>&nbsp;Change Password
+              <% end %>
+            </li>
+          </ul>    
+        </div>
+      <% end %>
+        <div class="card-body">
+          <h2 class="card-title">
+            <%= @user.name %>       
+          </h2>
+          <h6 class="card-subtitle mb-2 text-muted">
+            <ul class="list-inline">
+              <li class="list-inline-item">
+                <i class="fas fa-briefcase fa-lg"></i>
+                <%= @user.company %>
+              </li>
+              <li class="list-inline-item">
+                <i class="fas fa-id-card-alt fa-lg"></i>
+                <%= @user.job_title %>
+              </li>
+              <li class="list-inline-item">
+                <i class="far fa-envelope fa-lg"></i>
+                <%= @user.email %>
+              </li>
+              <%= link_to @user.website, class: "card-link" do %>
+                <i class="fas fa-home fa-lg"></i>
+              <% end %>
+              <%= link_to @user.twitter, class: "card-link" do %>
+                <i class="fab fa-twitter fa-lg"></i>
+              <% end %>
+              <%= link_to @user.github, class: "card-link" do %>
+                <i class="fab fa-github fa-lg"></i>
+              <% end %>
+            </ul>
+          </h6>
+          <p class="card-text">
+            <%= @user.intro %>
+          </p>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Counts display -->
+  
+    <div class="col-12 col-md-4">
+      <ul class="list-group">
+       <li class="list-group-item">
+        <h1 class="text-success"><strong>54</strong></h1>
+        Total earned upvotes
+      </li>
+       <li class="list-group-item">
+        <h3 class="text-success"><strong>11/ 22</strong></h3>
+        Questions/ Most Upvotes in 1 question 
+      </li>
+       <li class="list-group-item">
+        <h3 class="text-success"><strong>11/ 22</strong></h3>
+        Solutions/ Most Upvotes in 1 solution
+      </li>
+    </ul>
+  </div>
+</div>  
+ 

@@ -11,7 +11,9 @@
 
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style="background-color: #e3f2fd;">
-      <%= link_to'StackOverflowKh', root_path, class: "navbar-brand" %>
+      <%= link_to root_path, class: "navbar-brand" do %>
+        <i class="fab fa-stack-overflow fa-2x"></i>&nbsp;StackOverflowKh
+      <% end %>  
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -22,26 +24,32 @@
           <li class="nav-item">
             <span class="navbar-text">
               Hi! <%= current_user.name? ? current_user.name : current_user.email.split('@').first %> 
+              &nbsp;
             </span>
           </li>
           <li class="nav-item">
-            <%= link_to'Profile', user_path(current_user), class: "nav-link" %>
+          <%= link_to user_path(current_user), class: "nav-link" do %>
+            <i class="fas fa-user fa-lg"></i>&nbsp;Profile
+          <% end %>  
           </li>
           <li class="nav-item">
-            <%= link_to'登出', destroy_user_session_path, method: :delete, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to'修改密碼', edit_user_registration_path, class: "nav-link" %>
+          <%= link_to destroy_user_session_path, method: :delete, class: "nav-link" do %>
+            <i class="fas fa-sign-out-alt fa-lg"></i>&nbsp;登出
+          <% end %>
           </li>
         <% else %>
           <li class="nav-item">
-            <span class="navbar-text">Hi! Guest</span>
+            <span class="navbar-text">Hi! Guest&nbsp;</span>
           </li>
           <li class="nav-item">
-            <%= link_to'註冊', new_user_registration_path, class: "nav-link" %>
+          <%= link_to new_user_registration_path, class: "nav-link" do %>
+            <i class="fas fa-user-plus fa-lg"></i>&nbsp;註冊
+          <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to'登入', new_user_session_path, class: "nav-link" %>
+          <%= link_to new_user_session_path, class: "nav-link" do %>
+            <i class="fas fa-sign-in-alt fa-lg"></i>&nbsp;登入
+          <% end %>  
           </li>
         <% end %>  
         </ul>
