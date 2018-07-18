@@ -7,4 +7,5 @@ class User < ApplicationRecord
   validates_presence_of :name, :email
 
   has_many :questions
+  has_many :solutions
 end
