@@ -19,6 +19,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @question_count = @user.questions.size
+    @solution_count = @user.solutions.size
   end
 
   private
