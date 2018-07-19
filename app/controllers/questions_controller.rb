@@ -10,6 +10,7 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.new(question_params)
+    # 這邊 create 的時候沒寫入 user
     if @question.save
       flash[:notice] = "Question was successfully created"
       redirect_to questions_url
