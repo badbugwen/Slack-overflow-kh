@@ -19,6 +19,13 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def destroy
+    @question = Question.find(params[:id])
+    @question.destroy
+    redirect_to questions_path
+    flash[:alert] = "question was deleted"
+  end
+
   private
 
   def question_params
