@@ -1,4 +1,46 @@
-<h1>問題首頁<h1>
-<p>靜待有緣人</p>
+<div class="container">
+  <div class="row justify-content-end mb-2">
+    <!--show differernt slogen if current_user-->
+    <div class="col-2 float-right">
+      <%= link_to 'Ask Question', new_question_path, class:"btn btn-primary" %>
 
-<%= link_to "發問", new_question_path %>
+    </div>
+  </div>
+  <!--Question list-->
+  <ul class="list-group list-group-flush">
+    <% @questions.each do |question| %>
+      <li class="list-group-item">
+        <div class="row">
+          <!-- interactive counter -->
+          <div class="col-1 fa-3x">
+            <span class="fa-layers fa-fw" data-toggle="tooltip" title="Upvotes">
+          <i class="far fa-thumbs-up text-secondary"></i>
+          <span class="fa-layers-counter" style="background:Tomato">19</span>
+            </span>
+          </div>
+          <div class="col-1 fa-3x">
+            <span class="fa-layers fa-fw data-toggle=" tooltip " title="Tracks "">
+        <i class="far fa-star text-secondary"></i>
+        <span class="fa-layers-counter" style="background:Tomato">419</span>
+            </span>
+          </div>
+          <div class="col-1 fa-3x">
+            <span class="fa-layers fa-fw data-toggle=" tooltip " title="Answers "">
+        <i class="fab fa-replyd text-secondary"></i>
+        <span class="fa-layers-counter" style="background:Tomato">1</span>
+            </span>
+          </div>
+          <!-- Question -->
+          <div class="col-9">
+            <h2 class="text-primary m1-2"><%= link_to question.title, question_path(question) %></h2>
+            <p>
+              <%= truncate(question.content, length: 100) %>
+            </p>
+            <footer class="blockquote-footer float-right">asked at sometime
+              <cite title="Source Title">someone</cite>
+            </footer>
+            <% end %>
+          </div>
+        </div>
+      </li>
+  </ul>
