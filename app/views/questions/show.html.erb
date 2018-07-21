@@ -1,0 +1,18 @@
+title:<%= @question.title %><br>
+content:<%= @question.content %><br>
+user:<%= @question.user.name %><br>
+time:<%= @question.created_at.strftime("%Y-%m-%d, %H:%M") %>
+
+<br><br><br>
+upvotes: <%= @question.upvotes_count  %>
+solutions: <%= @question.solutions_count  %>
+favorites: <%= @question.favorites_count  %>
+
+<br><br><br>
+<% @solutions.each do |solution| %>
+name: <%= solution.user.name %>
+content: <%= solution.content %>
+upvotes: <%= solution.upvotes_count %>
+time:  <%= solution.created_at.strftime("%Y-%m-%d, %H:%M") %>
+<br><br><br>
+<% end %>

@@ -20,6 +20,11 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def show
+    @question = Question.find_by(id: params[:id])
+    @solutions =@question.solutions.order(upvotes_count: :desc)
+  end
+
   def destroy
     @question = Question.find(params[:id])
     @question.destroy
