@@ -7,3 +7,11 @@ time:<%= @question.created_at.strftime("%Y-%m-%d, %H:%M") %>
 upvotes: <%= @question.upvotes_count  %>
 solutions: <%= @question.solutions_count  %>
 favorites: <%= @question.favorites_count  %>
+
+<br><br><br>
+<% @question.solutions.each do |solution| %>
+name: <%= solution.user.name %>
+content: <%= solution.content %>
+time:  <%= solution.created_at.strftime("%Y-%m-%d, %H:%M") %>
+<br><br><br>
+<% end %>
