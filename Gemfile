@@ -18,16 +18,17 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'ffaker'
 
+# easy styling
+gem 'bootstrap', '~> 4.1.1'
+gem 'jquery-rails'
+# free graphicon
+gem 'font-awesome-sass', '~> 5.0.13'
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
   gem 'devise'
-  # easy styling
-  gem 'bootstrap', '~> 4.1.1'
-  gem 'jquery-rails'
-  # free graphicon
-  gem 'font-awesome-sass', '~> 5.0.13'
 end
 
 group :development do
