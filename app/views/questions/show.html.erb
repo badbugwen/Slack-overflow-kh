@@ -1,18 +1,84 @@
-title:<%= @question.title %><br>
-content:<%= @question.content %><br>
-user:<%= @question.user.name %><br>
-time:<%= @question.created_at.strftime("%Y-%m-%d, %H:%M") %>
+<div class="container">
 
-<br><br><br>
-upvotes: <%= @question.upvotes_count  %>
-solutions: <%= @question.solutions_count  %>
-favorites: <%= @question.favorites_count  %>
+  <div class="card">
+    <h5 class="card-header text-center"><%= @question.title %></h5>
+    <div class="card-body">
+      <!--Question counters-->
+      <div class="row">
+        <div class="col-2 fa-3x">
+          <span class="fa-layers fa-fw" data-toggle="tooltip" title="Upvotes the question">
+            <i class="far fa-thumbs-up text-secondary"></i>
+            <span class="fa-layers-counter" style="background:Tomato">
+              <%= @question.upvotes_count  %>
+            </span>
+          </span>
+          <span class="fa-layers fa-fw data-toggle=" tooltip " title="Tracks the question">
+            <i class="far fa-star text-secondary"></i>
+            <span class="fa-layers-counter" style="background:Tomato">
+              <%= @question.solutions_count  %>
+            </span>
+          </span>
+          <span class="fa-layers fa-fw data-toggle=" tooltip " title="Answer the question">
+            <i class="fab fa-replyd text-secondary"></i>
+            <span class="fa-layers-counter" style="background:Tomato">
+              <%= @question.favorites_count  %>
+            </span>
+          </span>
+        </div>
+        <!--Question Detail-->
+        <div class="col-10">
+          <blockquote class="blockquote mb-0">
+            <p><%= @question.content %></p>
+            <footer class="blockquote-footer float-right">asked at
+              <%= @question.created_at.strftime("%Y-%m-%d, %H:%M") %>
+              <cite title="Source Title">
+                <%= link_to @question.user.name, user_path(@question.user) %>
+              </cite>
+            </footer>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<br><br><br>
-<% @solutions.each do |solution| %>
-name: <%= solution.user.name %>
-content: <%= solution.content %>
-upvotes: <%= solution.upvotes_count %>
-time:  <%= solution.created_at.strftime("%Y-%m-%d, %H:%M") %>
-<br><br><br>
-<% end %>
+  <div class="card">
+    <div class="card-header text-center">
+      <h5>Answers of the question</h5>
+    </div>
+    <ul class="list-group list-group-flush">
+    <!--Solutions list-->
+      <% @solutions.each do |solution| %>
+      <li class="list-group-item">
+        <div class="row media">
+          <div class="col-2 fa-3x align-self-center">
+            <span class="fa-layers fa-fw" data-toggle="tooltip" title="Upvotes the solution">
+              <i class="far fa-thumbs-up text-secondary"></i>
+              <span class="fa-layers-counter" style="background:Tomato">
+                <%= solution.upvotes_count  %>
+              </span>
+            </span>
+          </div>
+          <div class="col-10 media-body">
+            <blockquote class="blockquote mb-0">
+              <p>
+                <%= solution.content %>
+              </p>
+              <footer class="blockquote-footer float-right">ansered at
+                <%= solution.created_at.strftime("%Y-%m-%d, %H:%M") %>
+                  <cite title="Source Title">
+                    <%= link_to solution.user.name, user_path(solution.user) %>
+                  </cite>
+              </footer>
+            </blockquote>
+          </div>
+        </div>
+      </li>
+     <% end %> 
+    </ul>
+  </div>
+
+  <!--Anser the question form-->
+  <% if current_user %>
+    
+  <% end %>
+</div>  
