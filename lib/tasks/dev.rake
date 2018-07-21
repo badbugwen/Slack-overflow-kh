@@ -37,8 +37,8 @@ namespace :dev  do
       20.times do |i|
         Question.create!(
           title: FFaker::Lorem::phrase,
-          content: FFaker::Lorem::paragraphs,
-          user_id: User.all.sample.id
+          content: FFaker::Lorem::sentence(200),
+          user_id: User.all.sample.id,
           )
       end 
       puts "Now you have #{Question.count} fake questions" 
@@ -48,7 +48,7 @@ namespace :dev  do
     Solution.destroy_all
       30.times do |i|
         Solution.create!(
-          content: FFaker::Lorem::paragraphs,
+          content: FFaker::Lorem::sentence(113),
           user_id: User.all.sample.id,
           question_id: Question.all.sample.id,
           )
@@ -57,6 +57,7 @@ namespace :dev  do
   end
   
   task fake_favorites: :environment do
+    # destroy all before create new fake date or the counter will error?
     for i in 1...Question.count
       x = Question.find(i)
       if x != nil
@@ -66,7 +67,7 @@ namespace :dev  do
           )
       end
     end
-    puts "Now you have #{Favorite.count} fake questions"    
+    puts "Now you have #{Favorite.count} fake fevorites"    
   end
 
   task rebuild: [

@@ -15,13 +15,13 @@
           <span class="fa-layers fa-fw data-toggle=" tooltip " title="Tracks the question">
             <i class="far fa-star text-secondary"></i>
             <span class="fa-layers-counter" style="background:Tomato">
-              <%= @question.solutions_count  %>
+              <%= @question.favorites_count  %>
             </span>
           </span>
           <span class="fa-layers fa-fw data-toggle=" tooltip " title="Answer the question">
             <i class="fab fa-replyd text-secondary"></i>
             <span class="fa-layers-counter" style="background:Tomato">
-              <%= @question.favorites_count  %>
+              <%= @question.solutions_count  %>
             </span>
           </span>
         </div>
@@ -43,7 +43,7 @@
 
   <div class="card">
     <div class="card-header text-center">
-      <h5>Answers of the question</h5>
+      <h5>Answers to question</h5>
     </div>
     <ul class="list-group list-group-flush">
     <!--Solutions list-->
