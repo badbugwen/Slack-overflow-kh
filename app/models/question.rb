@@ -9,8 +9,7 @@
 #  updated_at :datetime         not null
 #  user_id    :integer
 #
-
-
+class Question < ApplicationRecord
   has_many :solutions
   has_many :upvotes
   has_many :favorites
