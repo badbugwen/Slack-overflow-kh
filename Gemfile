@@ -24,6 +24,8 @@ gem 'jquery-rails'
 # free graphicon
 gem 'font-awesome-sass', '~> 5.0.13'
 
+gem 'annotate'
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 2.13'
