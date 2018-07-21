@@ -11,32 +11,33 @@
       <li class="list-group-item">
         <div class="row">
           <!-- interactive counter -->
-          <div class="col-1 fa-3x">
-            <span class="fa-layers fa-fw" data-toggle="tooltip" title="Upvotes">
-          <i class="far fa-thumbs-up text-secondary"></i>
-          <span class="fa-layers-counter" style="background:Tomato">19</span>
-            </span>
+          <div class="col-1 text-center">
+            <h2 class="m-0"><%= question.upvotes_count %></h2>
+            upvotes
           </div>
-          <div class="col-1 fa-3x">
-            <span class="fa-layers fa-fw data-toggle=" tooltip " title="Tracks "">
-        <i class="far fa-star text-secondary"></i>
-        <span class="fa-layers-counter" style="background:Tomato">419</span>
-            </span>
+          <% if question.solutions_count > 1 %>
+            <div class="col-1 text-center border border-success bg-success text-white rounded">
+          <% elsif question.solutions_count == 1 %> 
+            <div class="col-1 text-center border border-success text-success rounded"> 
+          <% else %>
+            <div class="col-1 text-center"> 
+          <% end %>  
+            <h2 class="m-0"><%= question.solutions_count %></h2>
+            answers
           </div>
-          <div class="col-1 fa-3x">
-            <span class="fa-layers fa-fw data-toggle=" tooltip " title="Answers "">
-        <i class="fab fa-replyd text-secondary"></i>
-        <span class="fa-layers-counter" style="background:Tomato">1</span>
-            </span>
+          <div class="col-1 text-center">
+            <h2 class="m-0"><%= question.favorites_count %></h2>
+            fevorites
           </div>
+
           <!-- Question -->
           <div class="col-9">
-            <h2 class="text-primary m1-2"><%= link_to question.title, question_path(question) %></h2>
-            <p>
+            <h5 class="text-primary m1-2"><%= link_to question.title, question_path(question) %></h5>
+          
               <%= truncate(question.content, length: 100) %>
-            </p>
-            <footer class="blockquote-footer float-right">asked at sometime
-              <cite title="Source Title">someone</cite>
+            
+            <footer class="blockquote-footer float-right">asked by <%= link_to question.user.name, user_path(question.user) %> 
+              <cite title="Source Title"><%= time_ago_in_words question.created_at %></cite>
             </footer>
             <% end %>
           </div>
