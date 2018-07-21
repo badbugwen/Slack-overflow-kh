@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180721021200) do
+ActiveRecord::Schema.define(version: 20180721023044) do
 
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20180721021200) do
     t.integer "user_id"
     t.integer "upvotes_count", default: 0
     t.integer "solutions_count", default: 0
-    t.integer "fevorites_count", default: 0
+    t.integer "favorites_count", default: 0
   end
 
   create_table "solutions", force: :cascade do |t|
