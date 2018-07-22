@@ -19,6 +19,15 @@ class UsersController < ApplicationController
     end    
   end
   
+  def favorite
+    if @user != current_user
+      flash[:alert] = "你不能觀看其他使用者的收藏"
+      redirect_to root_path
+    else
+      @favorited_questions = @user.favorited_questions
+    end
+  end
+  
   private
   def set_user
     @user = User.find(params[:id])

@@ -1,1 +1,6 @@
 <h1>這是使用者 <%= @user.name %> 的收藏列表</h1>
+<ul>
+<% @favorited_questions.each do |question| %>
+  <li><%= question.title %> 發問者: <%= question.user.name %> </li>
+<% end %>
+</ul>

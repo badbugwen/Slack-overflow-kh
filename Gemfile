@@ -25,6 +25,7 @@ gem 'jquery-rails'
 gem 'font-awesome-sass', '~> 5.0.13'
 
 gem 'annotate'
+gem 'kaminari'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
