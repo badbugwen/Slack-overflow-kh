@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:edit, :update, :show, :favorite]
   
   def index
   end
   
   def edit
-    @user = User.find(params[:id])
     unless @user == current_user
       flash[:alert] = "Not allow"
       redirect_back(fallback_location: root_path)  
@@ -12,7 +12,6 @@ class UsersController < ApplicationController
   end
   
   def update
-    @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to user_path(@user)
     else
@@ -20,11 +19,19 @@ class UsersController < ApplicationController
     end    
   end
   
-  def show
-    @user = User.find(params[:id])
+  def favorite
+    if @user != current_user
+      flash[:alert] = "你不能觀看其他使用者的收藏"
+      redirect_to root_path
+    else
+      @favorited_questions = @user.favorited_questions
+    end
   end
   
   private
+  def set_user
+    @user = User.find(params[:id])
+  end
   
   def user_params
     params.require(:user).permit(
