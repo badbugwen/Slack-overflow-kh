@@ -1,0 +1,33 @@
+<li class="list-group-item">
+  <div class="row">
+    <!--upvotes counter-->
+    <div class="col-1 text-center">
+      <h2 class="m-0"><%= question.upvotes_count %></h2>
+      upvotes
+    </div>
+    <!--solutions counter-->
+    <% if question.solutions_count > 1 %>
+      <div class="col-1 text-center border border-success bg-success text-white rounded">
+    <% elsif question.solutions_count == 1 %> 
+      <div class="col-1 text-center border border-success text-success rounded"> 
+    <% else %>
+      <div class="col-1 text-center"> 
+    <% end %>  
+      <h2 class="m-0"><%= question.solutions_count %></h2>
+      answers
+    </div>
+    <!--favorites counter-->
+    <div class="col-1 text-center">
+      <h2 class="m-0"><%= question.favorites_count %></h2>
+      fevorites
+    </div>
+    <!-- Question -->
+    <div class="col-9">
+      <h5 class="text-primary m1-2"><%= link_to question.title, question_path(question) %></h5>
+        <%= truncate(question.content, length: 100) %>
+      <footer class="blockquote-footer float-right">asked by <%= link_to question.user.name, user_path(question.user) %> 
+        <cite title="Source Title"><%= time_ago_in_words question.created_at %> ago</cite>
+      </footer>
+    </div>
+  </div>
+</li>
