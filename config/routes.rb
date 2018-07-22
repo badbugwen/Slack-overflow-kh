@@ -12,8 +12,11 @@ Rails.application.routes.draw do
     member do
       post :favorite
       post :unfavorite
+
+      post :upvote
+      post :unupvote
     end
   end
-    
+
   root "questions#index"
 end
