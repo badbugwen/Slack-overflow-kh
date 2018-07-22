@@ -35,7 +35,8 @@ class User < ApplicationRecord
   has_many :questions
   has_many :solutions
 
-  has_many :upvotes
+  has_many :upvotes, dependent: :destroy
+  has_many :upvoted_questions, through: :upvotes, source: :question
   has_many :favorites, dependent: :destroy
   has_many :favorited_questions, through: :favorites, source: :question
 end
