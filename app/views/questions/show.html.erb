@@ -24,19 +24,23 @@
               <%= @question.solutions_count  %>
             </span>
           </span>
-          <br>
-          <%= link_to "收藏", favorite_question_path(id: @question.id), method: :post %>
-          <br>
-          <%= link_to "取消收藏", unfavorite_question_path(id: @question.id), method: :post %>
-          <br>
-          <%= link_to 'Upvote', upvote_question_path(id: @question.id), method: :post %>
-          <br>
-          <%= link_to 'Unupvote', unupvote_question_path(id: @question.id), method: :post %>
         </div>
         <!--Question Detail-->
         <div class="col-10">
           <blockquote class="blockquote mb-0">
             <p><%= @question.content %></p>
+          
+          <% if @question.is_favorited?(current_user) %>
+            <%= link_to "取消收藏", unfavorite_question_path(id: @question.id), method: :post, class: "small" %>
+          <% else %>
+            <%= link_to "收藏", favorite_question_path(id: @question.id), method: :post, class: "small" %>
+          <% end %>  
+          <br>
+          <br>
+          <%= link_to 'Upvote', upvote_question_path(id: @question.id), method: :post, class: "small" %>
+          <br>
+          <%= link_to 'Unupvote', unupvote_question_path(id: @question.id), method: :post, class: "small" %>
+           
             <footer class="blockquote-footer float-right">asked at
               <%= @question.created_at.strftime("%Y-%m-%d, %H:%M") %>
               <cite title="Source Title">

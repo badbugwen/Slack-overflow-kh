@@ -78,8 +78,8 @@ namespace :dev  do
     "db:seed",
     :fake_users,
     :fake_questions,
-    :fake_solutions,
-    :fake_favorites
+    :fake_solutions
+    #:fake_favorites
     ]
 
   task rebuild_heroku: [

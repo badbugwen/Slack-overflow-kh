@@ -49,7 +49,7 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     favorites = Favorite.where(question: @question, user: current_user)
     favorites.destroy_all
-    flash[:alert] = "取消收藏"
+    flash[:alert] = "該收藏已取消"
     redirect_back(fallback_location: question_path(id: @question.id))  # 導回上一頁
   end
 
