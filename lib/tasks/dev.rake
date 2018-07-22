@@ -57,6 +57,7 @@ namespace :dev  do
   end
   
   task fake_favorites: :environment do
+    Question.destroy_all
     # destroy all before create new fake date or the counter will error?
     for i in 1...Question.count
       x = Question.find(i)
