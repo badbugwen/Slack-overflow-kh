@@ -81,5 +81,13 @@ namespace :dev  do
     :fake_solutions,
     :fake_favorites
     ]
+    
+  task rebuild_heroku: [
+    "db:migrate",
+    :fake_users,
+    :fake_questions,
+    :fake_solutions,
+    :fake_favorites
+    ]  
 
 end
