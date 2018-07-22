@@ -15,6 +15,21 @@ namespace :dev  do
     user.save!
     puts "帳：test@test.com"
     puts "密：123456"
+    5.times do |j|
+      user = User.new(
+          email: "test"+j.to_s+"@test.com",
+          password: "123456",
+          name: FFaker::Name::first_name,
+          intro: FFaker::Lorem::sentence(30),
+          company: FFaker::Company::name,
+          job_title: FFaker::Job::title,
+          website: "test.website.com",
+          twitter: "test.twitter",
+          github: "test.github"
+        )
+      user.save!
+      puts user.email
+    end
     15.times do |i|
       user = User.new(
         email: FFaker::Name::first_name + "@example.com",
@@ -78,8 +93,9 @@ namespace :dev  do
     "db:seed",
     :fake_users,
     :fake_questions,
-    :fake_solutions,
-    :fake_favorites
+    :fake_solutions
+    # 假資料生成寫法似乎有問題，先註解掉，暫時快速用手動方式來收藏吧
+    # :fake_favorites
     ]
 
   task rebuild_heroku: [
