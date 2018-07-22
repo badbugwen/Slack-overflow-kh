@@ -13,6 +13,8 @@ namespace :dev  do
         github: "test.github"
       )
     user.save!
+    puts "帳：test@test.com"
+    puts "密：123456"
     15.times do |i|     
       user = User.new(
         email: FFaker::Name::first_name + "@example.com",
@@ -31,15 +33,42 @@ namespace :dev  do
   end
   
   task fake_questions: :environment do
-    # 假資料做在這裡
+    Question.destroy_all
+      20.times do |i|
+        Question.create!(
+          title: FFaker::Lorem::phrase,
+          content: FFaker::Lorem::sentence(200),
+          user_id: User.all.sample.id,
+          )
+      end 
+      puts "Now you have #{Question.count} fake questions" 
   end
   
   task fake_solutions: :environment do
-    # 假資料做在這裡
+    Solution.destroy_all
+      30.times do |i|
+        Solution.create!(
+          content: FFaker::Lorem::sentence(113),
+          user_id: User.all.sample.id,
+          question_id: Question.all.sample.id,
+          )
+      end 
+      puts "Now you have #{Solution.count} fake Solutions" 
   end
   
   task fake_favorites: :environment do
-    # 假資料做在這裡
+    Favorite.destroy_all
+    # destroy all before create new fake date or the counter will error?
+    for i in 1...Question.count
+      x = Question.find(i)
+      if x != nil
+        Favorite.create!(
+            user_id: User.all.sample.id,
+            question_id: i
+          )
+      end
+    end
+    puts "Now you have #{Favorite.count} fake favorites"    
   end
 
   task rebuild: [

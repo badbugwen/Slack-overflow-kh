@@ -1,4 +1,52 @@
-<h1>問題首頁<h1>
-<p>靜待有緣人</p>
+<div class="container">
+  <div class="row justify-content-end mb-2">
+    <!--show differernt slogen if current_user-->
+    <% if user_signed_in? %>
+    <div class="col-2 float-right">
+      <%= link_to 'Ask Question', new_question_path, class:"btn btn-primary" %>
+    </div>
+    <% else %>
+    <h4><%= "If you want to ask something, you need to login in." %></h4>
+    <% end %>
+  </div>
 
-<%= link_to "發問", new_question_path %>
+  <!--Question list-->
+  <ul class="list-group list-group-flush">
+    <% @questions.each do |question| %>
+      <li class="list-group-item">
+        <div class="row">
+          <!-- interactive counter -->
+          <div class="col-1 text-center">
+            <h2 class="m-0"><%= question.upvotes_count %></h2>
+            upvotes
+          </div>
+          <% if question.solutions_count > 1 %>
+            <div class="col-1 text-center border border-success bg-success text-white rounded">
+          <% elsif question.solutions_count == 1 %> 
+            <div class="col-1 text-center border border-success text-success rounded"> 
+          <% else %>
+            <div class="col-1 text-center"> 
+          <% end %>  
+            <h2 class="m-0"><%= question.solutions_count %></h2>
+            answers
+          </div>
+          <div class="col-1 text-center">
+            <h2 class="m-0"><%= question.favorites_count %></h2>
+            fevorites
+          </div>
+
+          <!-- Question -->
+          <div class="col-9">
+            <h5 class="text-primary m1-2"><%= link_to question.title, question_path(question) %></h5>
+          
+              <%= truncate(question.content, length: 100) %>
+            
+            <footer class="blockquote-footer float-right">asked by <%= link_to question.user.name, user_path(question.user) %> 
+              <cite title="Source Title"><%= time_ago_in_words question.created_at %></cite>
+
+            </footer>
+            <% end %>
+          </div>
+        </div>
+      </li>
+  </ul>

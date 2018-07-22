@@ -27,37 +27,7 @@
         <div>
           <%= f.label :name %><br />
           <%= f.text_field :name %>
-        </div>
-
-        <div>
-          <%= f.label :intro %><br />
-          <%= f.text_field :intro %>
-        </div>
-
-        <div>
-          <%= f.label :company %><br />
-          <%= f.text_field :company %>
-        </div>
-
-        <div>
-          <%= f.label :job_title %><br />
-          <%= f.text_field :job_title %>
-        </div>
-
-        <div>
-          <%= f.label :website %><br />
-          <%= f.text_field :website %>
-        </div>
-
-        <div>
-          <%= f.label :twitter %><br />
-          <%= f.text_field :twitter %>
-        </div>
-
-        <div>
-          <%= f.label :github %><br />
-          <%= f.text_field :github %>
-        </div>
+        </div><br />
 
         <!-- let log_in and sign_up(shard/link) show in oneline -->
         <ul class="list-inline">
@@ -66,7 +36,7 @@
               <%= f.submit "Sign up", class: "btn btn-primary" %>
             </div>
       <% end %>
-          </li>  
+          </li>
         <!-- </ul> pu in shard/link  -->
 
       <%= render "devise/shared/links" %>

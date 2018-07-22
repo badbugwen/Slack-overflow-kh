@@ -4,9 +4,9 @@
     <title>StackOverflowKh</title>
     <meta name= 'viewport' content= 'width=devise-width, initial-scale=1.0'>
     <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script defer src="https://use.fontawesome.com/releases/v5.1.1/js/all.js" integrity="sha384-BtvRZcyfv4r0x/phJt9Y9HhnN5ur1Z+kZbKVgzVBAlQZX4jvAuImlIz+bG7TS00a" crossorigin="anonymous"></script>
   </head>
 
   <body>
@@ -26,6 +26,11 @@
               Hi! <%= current_user.name? ? current_user.name : current_user.email.split('@').first %> 
               &nbsp;
             </span>
+          </li>
+          <li class="nav-item">
+          <%= link_to favorite_user_path(current_user), class: "nav-link" do %>
+            <i class="fas fa-user fa-lg"></i>&nbsp;收藏列表
+          <% end %>  
           </li>
           <li class="nav-item">
           <%= link_to user_path(current_user), class: "nav-link" do %>
