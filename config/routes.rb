@@ -9,6 +9,10 @@ Rails.application.routes.draw do
   end
   resources :questions, only: [:index, :show, :new, :create] do
     resources :solutions, only: [:create]
+    member do
+      post :favorite
+      post :unfavorite
+    end
   end
     
   root "questions#index"
