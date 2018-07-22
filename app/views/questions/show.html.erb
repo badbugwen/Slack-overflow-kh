@@ -3,35 +3,66 @@
   <div class="card">
     <h5 class="card-header text-center"><%= @question.title %></h5>
     <div class="card-body">
-      <!--Question counters-->
+      
       <div class="row">
-        <div class="col-2 fa-3x">
-          <span class="fa-layers fa-fw" data-toggle="tooltip" title="Upvotes the question">
-            <i class="far fa-thumbs-up text-secondary"></i>
+        <div class="col-2 fa-3x text-center">
+
+        <!--upvotes counter/button-->
+        <% if @question.is_upvoted?(current_user) %>
+          <%= link_to unupvote_question_path(id: @question.id), method: :post, style:"text-decoration:none;" do %>
+          <span class="fa-layers fa-fw" data-toggle="tooltip" title="Recall your upvote">
+            <i class="fas fa-thumbs-up text-primary"></i>
             <span class="fa-layers-counter" style="background:Tomato">
               <%= @question.upvotes_count  %>
             </span>
           </span>
-          <span class="fa-layers fa-fw" data-toggle="tooltip" title="Tracks the question">
-            <i class="far fa-star text-secondary"></i>
-            <span class="fa-layers-counter" style="background:Tomato">
-              <%= @question.favorites_count  %>
+          <% end %>
+        <% else %>  
+            <%= link_to upvote_question_path(id: @question.id), method: :post, style:"text-decoration:none;" do %>
+            <span class="fa-layers fa-fw" data-toggle="tooltip" title="Upvote it">
+              <i class="far fa-thumbs-up text-secondary"></i>
+              <span class="fa-layers-counter" style="background:Tomato">
+                <%= @question.upvotes_count  %>
+              </span>
             </span>
-          </span>
-          <span class="fa-layers fa-fw" data-toggle=" tooltip " title="Answer the question">
-            <i class="fab fa-replyd text-secondary"></i>
-            <span class="fa-layers-counter" style="background:Tomato">
-              <%= @question.solutions_count  %>
-            </span>
-          </span>
-          <br>
-          <%= link_to "收藏", favorite_question_path(id: @question.id), method: :post %>
-          <br>
-          <%= link_to "取消收藏", unfavorite_question_path(id: @question.id), method: :post %>
-          <br>
-          <%= link_to 'Upvote', upvote_question_path(id: @question.id), method: :post %>
-          <br>
-          <%= link_to 'Unupvote', unupvote_question_path(id: @question.id), method: :post %>
+          <% end %>
+        <% end %> 
+          <br/>
+
+          <!--favorite counter/button-->
+          <% if @question.is_favorited?(current_user) %>
+            <%= link_to unfavorite_question_path(id: @question.id), method: :post, style:"text-decoration:none;" do %>
+              <span class="fa-layers fa-fw" data-toggle="tooltip" title="Cancel favorite">
+                <i class="fas fa-star text-primary"></i>
+                <span class="fa-layers-counter" style="background:Tomato">
+                  <%= @question.favorites_count  %>
+                </span> 
+              </span> 
+            <% end %>
+          <% else %>  
+            <%= link_to favorite_question_path(id: @question.id), method: :post, style:"text-decoration:none;" do %>
+              <span class="fa-layers fa-fw" data-toggle="tooltip" title="Favorite">
+                <i class="far fa-star text-secondary"></i>
+                <span class="fa-layers-counter" style="background:Tomato">
+                  <%= @question.favorites_count  %>
+                </span> 
+              </span>
+            <% end %>
+          <% end %>
+          <br/>
+
+          <!--solution counter/button-->
+          <% if current_user %>
+            <a href="#solution" style="text-decoration:none;">
+              <span class="fa-layers fa-fw" data-toggle=" tooltip " title="Answer it">
+                <i class="fab fa-replyd text-secondary"></i>
+                <span class="fa-layers-counter" style="background:Tomato">
+                  <%= @question.solutions_count  %>
+                </span>
+              </span>
+            </a>
+            <br>
+          <% end %>
         </div>
         <!--Question Detail-->
         <div class="col-10">
@@ -87,6 +118,7 @@
 
   <!--Anser the question form-->
   <% if current_user %>
+  <div id="solution">Answer form HERE</div>
 
   <% end %>
 </div>
