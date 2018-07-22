@@ -25,6 +25,7 @@ gem 'font-awesome-sass', '~> 5.0.13'
 #show schema info on model.rb
 gem 'annotate'
 gem 'kaminari'
+gem 'devise'
 
 group :production do
 gem 'pg', '~> 0.20'
@@ -34,7 +35,6 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
-  gem 'devise'
   gem 'sqlite3'
 end
 
