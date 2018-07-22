@@ -31,6 +31,26 @@ class QuestionsController < ApplicationController
     redirect_to questions_path
     flash[:alert] = "question was deleted"
   end
+  
+  def favorite
+    @question = Question.find(params[:id])
+    favorites = Favorite.where(question: @question, user: current_user)
+    if favorites.exists?
+      flash[:alert] = "已在收藏列表之中"
+    else
+      @question.favorites.create!(user: current_user)
+      flash[:alert] = "收藏成功"
+    end
+    redirect_back(fallback_location: question_path(id: @question.id))  # 導回上一頁
+  end
+
+  def unfavorite
+    @question = Question.find(params[:id])
+    favorites = Favorite.where(question: @question, user: current_user)
+    favorites.destroy_all
+    flash[:alert] = "取消收藏"
+    redirect_back(fallback_location: question_path(id: @question.id))  # 導回上一頁    
+  end
 
   private
 
