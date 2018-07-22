@@ -28,6 +28,10 @@
           <%= link_to "收藏", favorite_question_path(id: @question.id), method: :post %>
           <br>
           <%= link_to "取消收藏", unfavorite_question_path(id: @question.id), method: :post %>
+          <br>
+          <%= link_to 'Upvote', upvote_question_path(id: @question.id), method: :post %>
+          <br>
+          <%= link_to 'Unupvote', unupvote_question_path(id: @question.id), method: :post %>
         </div>
         <!--Question Detail-->
         <div class="col-10">
@@ -77,12 +81,12 @@
           </div>
         </div>
       </li>
-     <% end %> 
+     <% end %>
     </ul>
   </div>
 
   <!--Anser the question form-->
   <% if current_user %>
-    
+
   <% end %>
-</div>  
+</div>
