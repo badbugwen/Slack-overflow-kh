@@ -1,22 +1,28 @@
 class UsersController < ApplicationController
+
   before_action :set_user, only: [:edit, :update, :show, :favorite]
   
   def index
   end
-  
+
   def edit
     unless @user == current_user
       flash[:alert] = "Not allow"
       redirect_back(fallback_location: root_path)  
     end
   end
-  
+
   def update
     if @user.update(user_params)
       redirect_to user_path(@user)
     else
       render :edit
-    end    
+    end
+  end
+
+  def show
+    @question_count = @user.questions.size
+    @solution_count = @user.solutions.size
   end
   
   def favorite
@@ -27,8 +33,9 @@ class UsersController < ApplicationController
       @favorited_questions = @user.favorited_questions
     end
   end
-  
+
   private
+
   def set_user
     @user = User.find(params[:id])
   end
@@ -43,5 +50,5 @@ class UsersController < ApplicationController
       :twitter,
       :github)
   end
-  
+
 end
