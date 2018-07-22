@@ -15,7 +15,7 @@ namespace :dev  do
     user.save!
     puts "帳：test@test.com"
     puts "密：123456"
-    15.times do |i|     
+    15.times do |i|
       user = User.new(
         email: FFaker::Name::first_name + "@example.com",
         password: "123456",
@@ -31,7 +31,7 @@ namespace :dev  do
       puts user.email
     end
   end
-  
+
   task fake_questions: :environment do
     Question.destroy_all
       20.times do |i|
@@ -40,10 +40,10 @@ namespace :dev  do
           content: FFaker::Lorem::sentence(200),
           user_id: User.all.sample.id,
           )
-      end 
-      puts "Now you have #{Question.count} fake questions" 
+      end
+      puts "Now you have #{Question.count} fake questions"
   end
-  
+
   task fake_solutions: :environment do
     Solution.destroy_all
       30.times do |i|
@@ -52,10 +52,10 @@ namespace :dev  do
           user_id: User.all.sample.id,
           question_id: Question.all.sample.id,
           )
-      end 
-      puts "Now you have #{Solution.count} fake Solutions" 
+      end
+      puts "Now you have #{Solution.count} fake Solutions"
   end
-  
+
   task fake_favorites: :environment do
     Favorite.destroy_all
     # destroy all before create new fake date or the counter will error?
@@ -68,7 +68,7 @@ namespace :dev  do
           )
       end
     end
-    puts "Now you have #{Favorite.count} fake favorites"    
+    puts "Now you have #{Favorite.count} fake favorites"
   end
 
   task rebuild: [
@@ -81,13 +81,13 @@ namespace :dev  do
     :fake_solutions,
     :fake_favorites
     ]
-    
+
   task rebuild_heroku: [
     "db:migrate",
     :fake_users,
     :fake_questions,
     :fake_solutions,
     :fake_favorites
-    ]  
+    ]
 
 end
