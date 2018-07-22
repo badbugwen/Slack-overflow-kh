@@ -1,4 +1,5 @@
 class QuestionsController < ApplicationController
+  before_action :authenticate_user!
 
   def index
     @questions = Question.all
@@ -10,7 +11,7 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.new(question_params)
-    # 這邊 create 的時候沒寫入 user
+    @question.user_id = current_user.id
     if @question.save
       flash[:notice] = "Question was successfully created"
       redirect_to questions_url
@@ -37,4 +38,12 @@ class QuestionsController < ApplicationController
   def question_params
     params.require(:question).permit(:title, :content)
   end
+
+  def authenticate_user
+    unless current_user.signed_in?
+     flash[:alert] = "Not allow!"
+     redirect_to questions_path
+    end
+  end
+
 end

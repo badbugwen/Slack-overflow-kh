@@ -1,10 +1,15 @@
 <div class="container">
   <div class="row justify-content-end mb-2">
     <!--show differernt slogen if current_user-->
+    <% if user_signed_in? %>
     <div class="col-2 float-right">
       <%= link_to 'Ask Question', new_question_path, class:"btn btn-primary" %>
     </div>
+    <% else %>
+    <h4><%= "If you want to ask something, you need to login in." %></h4>
+    <% end %>
   </div>
+
   <!--Question list-->
   <ul class="list-group list-group-flush">
     <% @questions.each do |question| %>
@@ -35,8 +40,8 @@
             <p>
               <%= truncate(question.content, length: 100) %>
             </p>
-            <footer class="blockquote-footer float-right">asked at sometime
-              <cite title="Source Title">someone</cite>
+            <footer class="blockquote-footer float-right">before <%= time_ago_in_words(question.created_at) %> ago
+            <p><%= question.user.name %> </p>
             </footer>
             <% end %>
           </div>
