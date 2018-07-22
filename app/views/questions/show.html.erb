@@ -12,18 +12,22 @@
               <%= @question.upvotes_count  %>
             </span>
           </span>
-          <span class="fa-layers fa-fw data-toggle=" tooltip " title="Tracks the question">
+          <span class="fa-layers fa-fw" data-toggle="tooltip" title="Tracks the question">
             <i class="far fa-star text-secondary"></i>
-            <span class="fa-layers-counter" style="background:Tomato">
-              <%= @question.solutions_count  %>
-            </span>
-          </span>
-          <span class="fa-layers fa-fw data-toggle=" tooltip " title="Answer the question">
-            <i class="fab fa-replyd text-secondary"></i>
             <span class="fa-layers-counter" style="background:Tomato">
               <%= @question.favorites_count  %>
             </span>
           </span>
+          <span class="fa-layers fa-fw" data-toggle=" tooltip " title="Answer the question">
+            <i class="fab fa-replyd text-secondary"></i>
+            <span class="fa-layers-counter" style="background:Tomato">
+              <%= @question.solutions_count  %>
+            </span>
+          </span>
+          <br>
+          <%= link_to "收藏", favorite_question_path(id: @question.id), method: :post %>
+          <br>
+          <%= link_to "取消收藏", unfavorite_question_path(id: @question.id), method: :post %>
         </div>
         <!--Question Detail-->
         <div class="col-10">
@@ -43,7 +47,7 @@
 
   <div class="card">
     <div class="card-header text-center">
-      <h5>Answers of the question</h5>
+      <h5>Answers to question</h5>
     </div>
     <ul class="list-group list-group-flush">
     <!--Solutions list-->

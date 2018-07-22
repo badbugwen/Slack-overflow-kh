@@ -28,6 +28,11 @@
             </span>
           </li>
           <li class="nav-item">
+          <%= link_to favorite_user_path(current_user), class: "nav-link" do %>
+            <i class="fas fa-user fa-lg"></i>&nbsp;收藏列表
+          <% end %>  
+          </li>
+          <li class="nav-item">
           <%= link_to user_path(current_user), class: "nav-link" do %>
             <i class="fas fa-user fa-lg"></i>&nbsp;Profile
           <% end %>  
