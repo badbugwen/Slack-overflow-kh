@@ -1,25 +1,29 @@
 <li class="list-group-item">
   <div class="row">
     <!--upvotes counter-->
-    <div class="col-1 text-center">
-      <h2 class="m-0"><%= question.upvotes_count %></h2>
-      upvotes
-    </div>
-    <!--solutions counter-->
-    <% if question.solutions_count > 1 %>
-      <div class="col-1 text-center border border-success bg-success text-white rounded">
-    <% elsif question.solutions_count == 1 %> 
-      <div class="col-1 text-center border border-success text-success rounded"> 
-    <% else %>
-      <div class="col-1 text-center"> 
-    <% end %>  
-      <h2 class="m-0"><%= question.solutions_count %></h2>
-      answers
-    </div>
-    <!--favorites counter-->
-    <div class="col-1 text-center">
-      <h2 class="m-0"><%= question.favorites_count %></h2>
-      fevorites
+    <div class="col-3">
+      <ul class="list-inline">
+        <li class="list-inline-item">
+          <div class="counter p-1">
+            <h5 class="m-0"><%= question.upvotes_count %></h5>
+            upvotes
+          </div>
+        </li>
+      <!--solutions counter-->
+        <li class="list-inline-item">
+          <div class="counter p-1 <%= 'border border-success rounded ' if question.solutions_count > 0 %> <%= 'bg-success text-white' if question.solutions_count > 1 %>"> 
+            <h5 class="m-0"><%= question.solutions_count %></h5>
+            answers
+          </div>
+        </li>
+        <!--favorites counter-->
+        <li class="list-inline-item">
+          <div class="counter p-1">
+            <h5 class="m-0"><%= question.favorites_count %></h5>
+            fevorites
+          </div>
+        </li>
+      </ul>
     </div>
     <!-- Question -->
     <div class="col-9">
