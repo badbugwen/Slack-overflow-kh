@@ -1,17 +1,16 @@
 <div class="container">
 
-  <div class="card">
+  <div class="card mb-2">
     <h5 class="card-header text-center"><%= @question.title %></h5>
     <div class="card-body">
       
       <div class="row">
-        <div class="col-2 fa-3x text-center">
-
+        <div class="col-3 col-sm-2 fa-3x text-center">
         <!--upvotes counter/button-->
         <% if @question.is_upvoted?(current_user) %>
           <%= link_to unupvote_question_path(id: @question.id), method: :post, style:"text-decoration:none;" do %>
           <span class="fa-layers fa-fw" data-toggle="tooltip" title="Recall your upvote">
-            <i class="fas fa-thumbs-up text-primary"></i>
+            <i class="fas fa-thumbs-up text-primary counter"></i>
             <span class="fa-layers-counter" style="background:Tomato">
               <%= @question.upvotes_count  %>
             </span>
@@ -20,7 +19,7 @@
         <% else %>  
             <%= link_to upvote_question_path(id: @question.id), method: :post, style:"text-decoration:none;" do %>
             <span class="fa-layers fa-fw" data-toggle="tooltip" title="Upvote it">
-              <i class="far fa-thumbs-up text-secondary"></i>
+              <i class="far fa-thumbs-up text-secondary counter"></i>
               <span class="fa-layers-counter" style="background:Tomato">
                 <%= @question.upvotes_count  %>
               </span>
@@ -33,7 +32,7 @@
           <% if @question.is_favorited?(current_user) %>
             <%= link_to unfavorite_question_path(id: @question.id), method: :post, style:"text-decoration:none;" do %>
               <span class="fa-layers fa-fw" data-toggle="tooltip" title="Cancel favorite">
-                <i class="fas fa-star text-primary"></i>
+                <i class="fas fa-star text-primary counter"></i>
                 <span class="fa-layers-counter" style="background:Tomato">
                   <%= @question.favorites_count  %>
                 </span> 
@@ -42,7 +41,7 @@
           <% else %>  
             <%= link_to favorite_question_path(id: @question.id), method: :post, style:"text-decoration:none;" do %>
               <span class="fa-layers fa-fw" data-toggle="tooltip" title="Favorite">
-                <i class="far fa-star text-secondary"></i>
+                <i class="far fa-star text-secondary counter"></i>
                 <span class="fa-layers-counter" style="background:Tomato">
                   <%= @question.favorites_count  %>
                 </span> 
@@ -55,7 +54,7 @@
           <% if current_user %>
             <a href="#solution" style="text-decoration:none;">
               <span class="fa-layers fa-fw" data-toggle=" tooltip " title="Answer it">
-                <i class="fab fa-replyd text-secondary"></i>
+                <i class="fab fa-replyd text-secondary counter"></i>
                 <span class="fa-layers-counter" style="background:Tomato">
                   <%= @question.solutions_count  %>
                 </span>
@@ -65,7 +64,7 @@
           <% end %>
         </div>
         <!--Question Detail-->
-        <div class="col-10">
+        <div class="col-9 col-sm-10">
           <blockquote class="blockquote mb-0">
             <p><%= @question.content %></p>
             <footer class="blockquote-footer float-right">asked at
@@ -80,7 +79,7 @@
     </div>
   </div>
 
-  <div class="card">
+  <div class="card mb-2">
     <div class="card-header text-center">
       <h5>Answers to question</h5>
     </div>
