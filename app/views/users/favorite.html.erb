@@ -1,8 +1,8 @@
 <div class="container">
   <div class="card">
-    <h3 class="card-header text-center">
+    <h5 class="card-header text-center">
       <%= @favorited_questions.size %> questions in <%= @user.name %>'s favorite list
-    </h3>
+    </h5>
      <ul class="list-group list-group-flush">
       <!--Question list-->
       <%  @favorited_questions.each do |question| %>

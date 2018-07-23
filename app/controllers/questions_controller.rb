@@ -40,7 +40,7 @@ class QuestionsController < ApplicationController
       flash[:alert] = "已在收藏列表之中"
     else
       @question.favorites.create!(user: current_user)
-      flash[:alert] = "收藏成功"
+      flash[:notice] = "收藏成功"
     end
     redirect_back(fallback_location: question_path(id: @question.id))  # 導回上一頁
   end
