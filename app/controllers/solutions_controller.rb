@@ -12,12 +12,12 @@ class SolutionsController < ApplicationController
     end
     redirect_back(fallback_location: questions_path)
   end
-  
-  def unfavorite
-    # 在這裡寫程式碼 
-  end
 
   def upvote
+    # 在這裡寫程式碼
+  end
+  
+  def unupvote
     # 在這裡寫程式碼
   end
 
