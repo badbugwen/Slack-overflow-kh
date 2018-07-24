@@ -11,9 +11,7 @@
 
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style="background-color: #e3f2fd;">
-      <%= link_to root_path, class: "navbar-brand" do %>
-        <i class="fab fa-stack-overflow fa-2x"></i>&nbsp;StackOverflowKh
-      <% end %>  
+      <%= link_to'<i class="fab fa-stack-overflow fa-2x"></i> StackOverflowKh'.html_safe, root_path, class: "navbar-brand" %>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -28,33 +26,23 @@
             </span>
           </li>
           <li class="nav-item">
-          <%= link_to user_path(current_user), class: "nav-link" do %>
-            <i class="fas fa-user fa-lg"></i>&nbsp;Profile
-          <% end %>  
+            <%= link_to'<i class="fas fa-user fa-lg"></i>&nbsp;Profile'.html_safe, user_path(current_user), class: "nav-link" %>
           </li>
           <li class="nav-item">
-          <%= link_to favorite_user_path(current_user), class: "nav-link" do %>
-            <i class="fas fa-star fa-lg"></i>&nbsp;Favorite
-          <% end %>  
+            <%= link_to '<i class="fas fa-star fa-lg"></i> Favorite'.html_safe, favorite_user_path(current_user), class: "nav-link"%>
           </li>
           <li class="nav-item">
-          <%= link_to destroy_user_session_path, method: :delete, class: "nav-link" do %>
-            <i class="fas fa-sign-out-alt fa-lg"></i>&nbsp;Logout
-          <% end %>
+            <%= link_to '<i class="fas fa-sign-out-alt fa-lg"></i> Logout'.html_safe, destroy_user_session_path, method: :delete, class: "nav-link" %>
           </li>
         <% else %>
           <li class="nav-item">
             <span class="navbar-text">Hi! Guest&nbsp;</span>
           </li>
           <li class="nav-item">
-          <%= link_to new_user_registration_path, class: "nav-link" do %>
-            <i class="fas fa-user-plus fa-lg"></i>&nbsp;Sign Up
-          <% end %>
+            <%= link_to '<i class="fas fa-user-plus fa-lg"></i> Sign Up'.html_safe, new_user_registration_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-          <%= link_to new_user_session_path, class: "nav-link" do %>
-            <i class="fas fa-sign-in-alt fa-lg"></i>&nbsp;Sign In
-          <% end %>  
+            <%= link_to '<i class="fas fa-sign-in-alt fa-lg"></i> Sign In'.html_safe, new_user_session_path, class: "nav-link" %>
           </li>
         <% end %>  
         </ul>
