@@ -11,7 +11,7 @@
   </div>
 
   <!--Question list-->
-  <div class="card">
+  <div class="card border border-light">
     <ul class="list-group list-group-flush">
       <% @questions.each do |question| %>
         <%= render :partial => "shared/question_item", locals: {question: question} %>
