@@ -11,11 +11,13 @@
   </div>
 
   <!--Question list-->
-  <ul class="list-group list-group-flush">
-    <% @questions.each do |question| %>
-      <%= render :partial => "shared/question_item", locals: {question: question} %>
-    <% end %>
-  </ul>
+  <div class="card">
+    <ul class="list-group list-group-flush">
+      <% @questions.each do |question| %>
+        <%= render :partial => "shared/question_item", locals: {question: question} %>
+      <% end %>
+    </ul>
+  </div>
   <div class="container pagination justify-content-center mt-2" >
     <%= paginate @questions, theme: 'twitter-bootstrap-4', pagination_class: "pagination-sm" %>
   </div>
