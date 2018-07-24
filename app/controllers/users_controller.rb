@@ -30,7 +30,7 @@ class UsersController < ApplicationController
       flash[:alert] = "你不能觀看其他使用者的收藏"
       redirect_to root_path
     else
-      @favorited_questions = @user.favorited_questions
+      @favorited_questions = @user.favorited_questions.order(created_at: :desc)
     end
   end
 
