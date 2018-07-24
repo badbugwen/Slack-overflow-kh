@@ -116,11 +116,12 @@
   </div>
 
   <!--Anser the question form-->
-  <% if current_user %>
+  <% if user_signed_in? %>
     <%= form_for [ @question, @solution ] do |f| %>
     <%= f.label :content %>
     <%= f.text_area :content %>
     <%= f.submit "Answer it" %>
+    <% end %>
   <% else %>
     <p> You need to log in. <P>
   <% end %>

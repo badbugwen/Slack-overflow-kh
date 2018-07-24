@@ -23,7 +23,8 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find_by(id: params[:id])
-    @solutions =@question.solutions.order(upvotes_count: :desc)
+    @solutions = @question.solutions.order(upvotes_count: :desc)
+    @solution = Solution.new
   end
 
   def destroy
