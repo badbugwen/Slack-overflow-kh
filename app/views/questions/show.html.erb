@@ -81,14 +81,14 @@
 
   <div class="card mb-2">
     <div class="card-header text-center">
-      <h5>Answers to question</h5>
+      <h5> <%=  @question.solutions_count %> Answer<%= 's' if @question.solutions_count > 1 %> to the question</h5>
     </div>
     <ul class="list-group list-group-flush">
     <!--Solutions list-->
       <% @solutions.each do |solution| %>
       <li class="list-group-item">
         <div class="row media">
-          <div class="col-2 fa-3x align-self-center">
+          <div class="col-2 fa-3x text-center">
             <span class="fa-layers fa-fw" data-toggle="tooltip" title="Upvotes the solution">
               <i class="far fa-thumbs-up text-secondary"></i>
               <span class="fa-layers-counter" style="background:Tomato">
@@ -118,11 +118,15 @@
   <!--Anser the question form-->
   <% if user_signed_in? %>
     <%= form_for [ @question, @solution ] do |f| %>
-    <%= f.label :content %>
-    <%= f.text_area :content %>
-    <%= f.submit "Answer it" %>
-    <% end %>
+    <div class="form-group">
+     
+      <%= f.text_area :content, rows: "6", placeholder:"Put Your Answer Here", class: "form-control form-control-lg" %>
+    </div>
+    <div class="form-group float-right">
+      <%= f.submit "Answer the question", class: "btn btn-outline-primary" %>
+    </div>  
+    <% end %>  
   <% else %>
-    <p> You need to log in. <P>
+    <h5> You need to log in before answer the question. </h5>
   <% end %>
 </div>
