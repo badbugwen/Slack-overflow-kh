@@ -23,7 +23,7 @@
         <% if current_user %>  
           <li class="nav-item">
             <span class="navbar-text">
-              Hi! <%= current_user.name? ? current_user.name : current_user.email.split('@').first %> 
+              Hi! <%= current_user.name %> 
               &nbsp;
             </span>
           </li>
