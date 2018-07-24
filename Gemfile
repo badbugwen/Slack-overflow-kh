@@ -14,7 +14,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
-
+gem 'devise'
 gem 'ffaker'
 
 # easy styling
@@ -24,8 +24,12 @@ gem 'jquery-rails'
 gem 'font-awesome-sass', '~> 5.0.13'
 #show schema info on model.rb
 gem 'annotate'
+
+#easy paginatipn
 gem 'kaminari'
-gem 'devise'
+gem 'bootstrap_form'
+gem 'bootstrap4-kaminari-views'
+
 
 group :production do
 gem 'pg', '~> 0.20'
