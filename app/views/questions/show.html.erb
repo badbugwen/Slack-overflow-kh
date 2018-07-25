@@ -5,7 +5,7 @@
     <div class="card-body">
       
       <div class="row">
-        <div class="col-3 col-sm-2 fa-3x text-center">
+        <div class="col-3 col-sm-2 fa-3x text-center click">
         <!--upvotes counter/button-->
         <% if @question.is_upvoted?(current_user) %>
           <%= link_to unupvote_question_path(id: @question.id), method: :post, style:"text-decoration:none;" do %>
@@ -54,7 +54,7 @@
           <% if current_user %>
             <a href="#solution" style="text-decoration:none;">
               <span class="fa-layers fa-fw" data-toggle=" tooltip " title="Answer it">
-                <i class="fab fa-replyd text-secondary counter"></i>
+                <i class="fab fa-replyd <%= @question.is_soluted?(current_user)? 'text-primary' : 'text-secondary' %> counter"></i>
                 <span class="fa-layers-counter" style="background:Tomato">
                   <%= @question.solutions_count  %>
                 </span>
@@ -118,7 +118,7 @@
   <!--Anser the question form-->
   <% if user_signed_in? %>
     <%= form_for [ @question, @solution ] do |f| %>
-    <div class="form-group">
+    <div class="form-group border border-success rounded" id="solution">
      
       <%= f.text_area :content, rows: "6", placeholder:"Put Your Answer Here", class: "form-control form-control-lg" %>
     </div>
