@@ -32,7 +32,8 @@ gem 'bootstrap4-kaminari-views'
 
 #login by github
 gem "omniauth-github"
-
+# for yml file deploy to heroku
+gem 'figaro'
 
 group :production do
 gem 'pg', '~> 0.20'
