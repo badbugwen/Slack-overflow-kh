@@ -14,4 +14,9 @@ class Solution < ApplicationRecord
   belongs_to :user
   belongs_to :question, counter_cache: true
   has_many :upvotes
+  has_many :upvoted_users, through: :upvotes, source: :user
+
+  def is_upvoted?(user)
+    self.upvoted_users.include?(user)
+  end
 end

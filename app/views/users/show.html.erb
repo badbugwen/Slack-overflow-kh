@@ -1,54 +1,43 @@
 <div class="container">
   <!-- user info -->
   <div class="row">
-    <div class="col-12 col-md-8">
+    <div class="col-12 col-md-8 mb-2">
       <div class="card">
       <% if current_user == @user %>
         <div class="card-header text-right">
-          <ul class="list-inline">
-            <li class="list-inline-item">
-              <%= link_to edit_user_path(current_user), class: "btn btn-outline-dark" do %>
-                <i class="fas fa-user-edit fa-lg"></i>&nbsp;Edit Profile
-              <% end %>
-            </li>
-            <li class="list-inline-item">
-              <%= link_to edit_user_registration_path, class: "btn btn-outline-dark" do %>
-                <i class="fas fa-user-lock fa-lg"></i>&nbsp;Change Password
-              <% end %>
-            </li>
-          </ul>
+          <%= link_to'<i class="fas fa-user-edit fa-lg"></i> Edit Profile'.html_safe, edit_user_path(current_user), class: "btn btn-outline-dark"%>
+          &nbsp;&nbsp;
+          <%= link_to '<i class="fas fa-user-lock fa-lg"></i>&nbsp;Change Password'.html_safe, edit_user_registration_path, class: "btn btn-outline-dark" %>
         </div>
       <% end %>
         <div class="card-body">
           <h2 class="card-title">
             <%= @user.name %>
           </h2>
-          <h6 class="card-subtitle mb-2 text-muted">
-            <ul class="list-inline">
-              <li class="list-inline-item">
-                <i class="fas fa-briefcase fa-lg"></i>
-                <%= @user.company %>
-              </li>
-              <li class="list-inline-item">
-                <i class="fas fa-id-card-alt fa-lg"></i>
-                <%= @user.job_title %>
-              </li>
-              <li class="list-inline-item">
-                <i class="far fa-envelope fa-lg"></i>
-                <%= @user.email %>
-              </li>
-              <%= link_to @user.website, class: "card-link" do %>
-                <i class="fas fa-home fa-lg"></i>
-              <% end %>
-              <%= link_to @user.twitter, class: "card-link" do %>
-                <i class="fab fa-twitter fa-lg"></i>
-              <% end %>
-              <%= link_to @user.github, class: "card-link" do %>
-                <i class="fab fa-github fa-lg"></i>
-              <% end %>
-            </ul>
+          <h6 class="card-subtitle text-muted">
+            <i class="fas fa-briefcase fa-lg mt-2"></i>
+            <%= @user.company %>&nbsp;&nbsp;
+            <i class="fas fa-id-card-alt fa-lg mt-2"></i>
+            <%= @user.job_title %>&nbsp;&nbsp;
+            <i class="far fa-envelope fa-lg mt-2"></i>
+            <%= @user.email %>&nbsp;&nbsp;
+            <% if  @user.website? %>
+              <%= link_to '<i class="fas fa-home fa-lg mt-2"></i>'.html_safe, @user.website, target: :_blank %> 
+            <% else %>
+              <i class="fas fa-home fa-lg mt-2"></i>
+            <% end %>&nbsp; &nbsp; 
+            <% if @user.twitter? %>
+              <%= link_to '<i class="fab fa-twitter fa-lg"></i>'.html_safe, @user.twitter, target: :_blank %>
+            <% else %>
+              <i class="fab fa-twitter fa-lg mt-2 "></i>
+            <% end %>&nbsp; &nbsp;   
+            <% if @user.github? %>
+              <%= link_to'<i class="fab fa-github fa-lg"></i>'.html_safe, @user.github, target: :_blank  %>
+            <% else %>
+              <i class="fab fa-github fa-lg mt-2"></i>
+            <% end %>
           </h6>
-          <p class="card-text">
+          <p class="card-text mt-2">
             <%= @user.intro %>
           </p>
         </div>
@@ -56,7 +45,6 @@
     </div>
 
     <!-- Counts display -->
-
     <div class="col-12 col-md-4">
       <ul class="list-group">
        <li class="list-group-item">

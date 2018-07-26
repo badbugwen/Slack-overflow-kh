@@ -2,7 +2,7 @@ class QuestionsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @questions = Question.all
+    @questions = Question.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def new
@@ -23,7 +23,8 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find_by(id: params[:id])
-    @solutions =@question.solutions.order(upvotes_count: :desc)
+    @solutions = @question.solutions.order(upvotes_count: :desc)
+    @solution = Solution.new
   end
 
   def destroy
@@ -32,7 +33,7 @@ class QuestionsController < ApplicationController
     redirect_to questions_path
     flash[:alert] = "question was deleted"
   end
-  
+
   def favorite
     @question = Question.find(params[:id])
     favorites = Favorite.where(question: @question, user: current_user)
@@ -40,7 +41,7 @@ class QuestionsController < ApplicationController
       flash[:alert] = "已在收藏列表之中"
     else
       @question.favorites.create!(user: current_user)
-      flash[:alert] = "收藏成功"
+      flash[:notice] = "收藏成功"
     end
     redirect_back(fallback_location: question_path(id: @question.id))  # 導回上一頁
   end
@@ -50,7 +51,20 @@ class QuestionsController < ApplicationController
     favorites = Favorite.where(question: @question, user: current_user)
     favorites.destroy_all
     flash[:alert] = "取消收藏"
-    redirect_back(fallback_location: question_path(id: @question.id))  # 導回上一頁    
+    redirect_back(fallback_location: question_path(id: @question.id))  # 導回上一頁
+  end
+
+  def upvote
+    @question = Question.find(params[:id])
+    @question.upvotes.create!(user: current_user)
+    redirect_back(fallback_location: question_path(id: @question.id))
+  end
+
+  def unupvote
+    @question = Question.find(params[:id])
+    upvotes = Upvote.where(question: @question, user: current_user)
+    upvotes.destroy_all
+    redirect_back(fallback_location: question_path(id: @question.id))
   end
 
   private

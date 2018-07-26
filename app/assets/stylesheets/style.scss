@@ -1,3 +1,20 @@
 body {
   padding-top: 90px;
 }
+
+.click div:hover{
+  -webkit-transform: scale(1.1);
+}
+
+.inline{
+  display: inline-block;
+}
+
+.counter {
+  width: 70px;
+  hight: 70px;
+  text-align: center;
+}
+
+
+
