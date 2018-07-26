@@ -62,7 +62,6 @@ class User < ApplicationRecord
 
     #case 3: create new password
     user = User.new
-    user.gh_provider = auth.provuder
     user.name = auth.info.name
     user.gh_uid = auth.uid
     user.gh_token = auth.credentials.token
