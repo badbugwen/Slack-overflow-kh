@@ -30,6 +30,9 @@ gem 'kaminari'
 gem 'bootstrap_form'
 gem 'bootstrap4-kaminari-views'
 
+#login by github
+gem "omniauth-github"
+
 
 group :production do
 gem 'pg', '~> 0.20'
