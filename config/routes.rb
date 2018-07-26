@@ -18,13 +18,6 @@ Rails.application.routes.draw do
       post :unupvote
     end
   end
-  
-  resources :solutions, only: [] do
-    member do
-      post :upvote
-      post :unupvote
-    end
-  end
 
   root "questions#index"
 end

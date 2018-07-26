@@ -1,5 +1,5 @@
 class SolutionsController < ApplicationController
-<<<<<<< HEAD
+
     def upvote
       @upvote = Solution.find(params[:id])
       @solution.upvotes.create!(user: current_user)
@@ -14,7 +14,7 @@ class SolutionsController < ApplicationController
       redirect_back(fallback_location: question_path(id: @question.id))
       render :questions =>"show"
     end
-=======
+
 
   def create
     @question = Question.find(params[:question_id])
@@ -36,6 +36,4 @@ class SolutionsController < ApplicationController
     params.require(:solution).permit(:content)
   end
 
-
->>>>>>> 52fe033180d03574f78d476c0acaf70ef124bc9d
 end
