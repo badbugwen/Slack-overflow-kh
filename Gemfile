@@ -32,7 +32,8 @@ gem 'bootstrap4-kaminari-views'
 
 #login by github
 gem "omniauth-github"
-
+#To manage secret yml file 
+gem "figaro"
 
 group :production do
 gem 'pg', '~> 0.20'
