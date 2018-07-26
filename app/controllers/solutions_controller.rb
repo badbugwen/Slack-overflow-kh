@@ -1,4 +1,20 @@
 class SolutionsController < ApplicationController
+<<<<<<< HEAD
+    def upvote
+      @upvote = Solution.find(params[:id])
+      @solution.upvotes.create!(user: current_user)
+      redirect_back(fallback_location: question_path(id: @question.id))  # 導回上一頁
+      render :questions =>"show"
+    end
+
+    def unupvote
+      @upvote = Solution.find(params[:id])
+      upvotes = Upvote.where(solution: @solution, user: current_user)
+      upvotes.destroy_all
+      redirect_back(fallback_location: question_path(id: @question.id))
+      render :questions =>"show"
+    end
+=======
 
   def create
     @question = Question.find(params[:question_id])
@@ -13,13 +29,6 @@ class SolutionsController < ApplicationController
     redirect_back(fallback_location: questions_path)
   end
 
-  def upvote
-    # 在這裡寫程式碼
-  end
-  
-  def unupvote
-    # 在這裡寫程式碼
-  end
 
   private
 
@@ -27,5 +36,6 @@ class SolutionsController < ApplicationController
     params.require(:solution).permit(:content)
   end
 
-  
+
+>>>>>>> 52fe033180d03574f78d476c0acaf70ef124bc9d
 end
