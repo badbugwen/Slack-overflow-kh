@@ -62,10 +62,14 @@ class User < ApplicationRecord
 
     #case 3: create new password
     user = User.new
-    user.name = auth.info.name
     user.gh_uid = auth.uid
     user.gh_token = auth.credentials.token
+    user.name = auth.info.name
     user.email = auth.info.email
+    user.intro = auth.info.bio
+    user.company = auth.info.company
+    user.website = auth.info.blog
+    user.github = auth.info.html_url
     user.password = Devise.friendly_token[0,20]
     user.save!  
     return user
