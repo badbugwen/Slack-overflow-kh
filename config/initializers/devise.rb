@@ -6,10 +6,8 @@ Devise.setup do |config|
 
   github_config = Rails.application.config_for(:github)
   #omniauth
-  config.omniauth :github, github_config["app_id"], github_config["secret"],
-  cope: "user:email,user:follow", info_fields: "email, name", 
-  callback_url:"http://localhost:3000/users/auth/github/callback"
-  end
+  config.omniauth :github, github_config["app_id"], github_config["secret"], cope: "user:email,user:follow", info_fields: "email, name", callback_url:"http://localhost:3000/users/auth/github/callback"
+  
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
