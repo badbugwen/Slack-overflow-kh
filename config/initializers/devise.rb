@@ -6,7 +6,7 @@ Devise.setup do |config|
 
   
   #omniauth
-  config.omniauth :github, ENV["GITHUB_API_KEY"], ENV["GITHUB_API_SECRET"], :scope => "user:email", info_fields: "email, name", callback_url:"https://stackoverflow-kh/users/auth/github/callback"
+  config.omniauth :github, ENV["GITHUB_API_KEY"], ENV["GITHUB_API_SECRET"], :scope => "user", info_fields: "email, name", callback_url:"https://stackoverflow-kh/users/auth/github/callback"
 
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
