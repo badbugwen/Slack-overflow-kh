@@ -4,9 +4,9 @@
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
 
-  github_config = Rails.application.config_for(:github)
+  
   #omniauth
-  config.omniauth :github, github_config["app_id"], github_config["secret"], :scope => "user:email", info_fields: "email, name", callback_url:"http://localhost:3000/users/auth/github/callback"
+  config.omniauth :github, ENV["app_id"], ENV["secret"], :scope => "user, public_repo", info_fields: "email, name", callback_url:"http://localhost:3000/users/auth/github/callback"
   
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
