@@ -52,20 +52,24 @@ class User < ApplicationRecord
     end
     
     #case 2: find exsition user by enail
-    existing_user = USer.fin_by_email(auth.info.email)
+    existing_user = User.find_by_email(auth.info.email)
     if existing_user
       existing_user.gh_uid = auth.uid
       existing_user.gh_token =   auth.credentials.token 
       existing_user.save!
       return existing_user
+    end
 
     #case 3: create new password
     user = User.new
+    user.gh_provider = auth.provuder
+    user.name = auth.info.name
     user.gh_uid = auth.uid
     user.gh_token = auth.credentials.token
     user.email = auth.info.email
     user.password = Devise.friendly_token[0,20]
     user.save!  
     return user
-  end
+  end  
+end
 
