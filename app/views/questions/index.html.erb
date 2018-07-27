@@ -3,7 +3,7 @@
     <!--show differernt slogen if current_user-->
     <% if user_signed_in? %>
       <div class="col">
-        <%= button_to 'Ask Question', new_question_path, class:"btn btn-primary float-right" %>
+        <%= link_to 'Ask Question', new_question_path, class:"btn btn-primary float-right" %>
       </div>
     <% else %>
       <div class="col">
