@@ -2,14 +2,14 @@
   <div class="row">
     <!--show differernt slogen if current_user-->
     <% if user_signed_in? %>
-      <div class="col-2 offset-7 col-sm-2 offset-sm-10 mb-2">
-        <%= link_to 'Ask Question', new_question_path, class:"btn btn-primary" %>
+      <div class="col">
+        <%= button_to 'Ask Question', new_question_path, class:"btn btn-primary float-right" %>
       </div>
     <% else %>
-    <div class="col">
-      <h5 class="bg-info text-center text-white p-2"><%= "If you want to ask something, PLEASE log in." %></h5>
+      <div class="col">
+        <h5 class="bg-info text-center text-white p-2"><%= "If you want to ask something, PLEASE log in." %></h5>
+      </div>
     <% end %>
-    </div>
   </div>
 
   <!--Question list-->
