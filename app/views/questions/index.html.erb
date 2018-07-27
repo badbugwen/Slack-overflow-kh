@@ -6,8 +6,10 @@
         <%= link_to 'Ask Question', new_question_path, class:"btn btn-primary" %>
       </div>
     <% else %>
-      <h4><%= "If you want to ask something, you need to login in." %></h4>
+    <div class="col">
+      <h5 class="bg-info text-center text-white p-2"><%= "If you want to ask something, PLEASE log in." %></h5>
     <% end %>
+    </div>
   </div>
 
   <!--Question list-->

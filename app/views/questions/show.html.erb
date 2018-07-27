@@ -51,9 +51,9 @@
           <br/>
 
           <!--solution counter/button-->
-          <% if current_user %>
+          
             <a href="#solution" style="text-decoration:none;">
-              <span class="fa-layers fa-fw" data-toggle=" tooltip " title="Answer it">
+              <span class="fa-layers fa-fw" data-toggle=" tooltip " title="<%= current_user ? 'Answer it' : 'Answers'  %>">
                 <i class="fab fa-replyd <%= @question.is_soluted?(current_user)? 'text-primary' : 'text-secondary' %> counter"></i>
                 <span class="fa-layers-counter" style="background:Tomato">
                   <%= @question.solutions_count  %>
@@ -61,7 +61,7 @@
               </span>
             </a>
             <br>
-          <% end %>
+         
         </div>
         <!--Question Detail-->
         <div class="col-9 col-sm-10">
@@ -127,6 +127,6 @@
     </div>  
     <% end %>  
   <% else %>
-    <h5> You need to log in before answer the question. </h5>
+    <h5 id="solution" class="bg-info text-center text-white p-3"> You need to log in before answer the question. </h5>
   <% end %>
 </div>
