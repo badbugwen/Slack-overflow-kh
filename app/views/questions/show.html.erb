@@ -94,7 +94,7 @@
             <span class="fa-layers fa-fw" data-toggle="tooltip" title="Recall your upvote">
               <i class="fas fa-thumbs-up text-primary counter"></i>
               <span class="fa-layers-counter" style="background:Tomato">
-                <%= @solution.upvotes_count  %>
+                <%= solution.upvotes_count  %>
               </span>
             </span>
             <% end %>
@@ -130,7 +130,7 @@
     </ul>
   </div>
 
-  <!--Anser the question form-->
+  <!--Answer the question form-->
   <% if user_signed_in? %>
     <%= form_for [ @question, @solution ] do |f| %>
     <div class="form-group border border-success rounded" id="solution">

@@ -22,7 +22,7 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find_by(id: params[:id])
-    @solutions = @question.solutions.order(upvotes_count: :desc)
+    @solutions = @question.solutions.order(created_at: :asc)
     @solution = Solution.new
   end
 
@@ -30,17 +30,17 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     @question.destroy
     redirect_to questions_path
-    flash[:alert] = "question was deleted"
+    flash[:alert] = "Question was deleted"
   end
 
   def favorite
     @question = Question.find(params[:id])
     favorites = Favorite.where(question: @question, user: current_user)
     if favorites.exists?
-      flash[:alert] = "已在收藏列表之中"
+      flash[:alert] = "Already in your favorites list"
     else
       @question.favorites.create!(user: current_user)
-      flash[:notice] = "收藏成功"
+      flash[:notice] = "Question was favorited successfully"
     end
     redirect_back(fallback_location: question_path(id: @question.id))  # 導回上一頁
   end
@@ -49,13 +49,14 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     favorites = Favorite.where(question: @question, user: current_user)
     favorites.destroy_all
-    flash[:alert] = "取消收藏"
+    flash[:alert] = "Question was removed from your favorites list successfully"
     redirect_back(fallback_location: question_path(id: @question.id))  # 導回上一頁
   end
 
   def upvote
     @question = Question.find(params[:id])
     @question.upvotes.create!(user: current_user)
+    flash[:notice] = "You upvote the question successfully"
     redirect_back(fallback_location: question_path(id: @question.id))
   end
 
@@ -63,6 +64,7 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     upvotes = Upvote.where(question: @question, user: current_user)
     upvotes.destroy_all
+    flash[:alert] = "Your upvote was recalled successfully"
     redirect_back(fallback_location: question_path(id: @question.id))
   end
 

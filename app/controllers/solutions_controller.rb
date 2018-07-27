@@ -3,6 +3,7 @@ class SolutionsController < ApplicationController
   def upvote
     @solution = Solution.find(params[:id])
     @solution.upvotes.create!(user: current_user)
+    flash[:notice] = "You upvote the question successfully"
     redirect_back(fallback_location: question_path(@solution.question))  # 導回上一頁
   end
 
@@ -10,6 +11,7 @@ class SolutionsController < ApplicationController
     @solution = Solution.find(params[:id])
     upvotes = Upvote.where(question_id: @question, solution: @solution, user: current_user)
     upvotes.destroy_all
+    lash[:alert] = "Your upvote was recalled successfully"
     redirect_back(fallback_location: question_path(@solution.question))
   end
 
