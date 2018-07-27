@@ -1,27 +1,22 @@
 <li class="list-group-item">
   <div class="row">
-    <!--upvotes counter-->
     <div class="col-3">
+      <% if current_user %>
       <ul class="list-inline click">
-        <li class="list-inline-item">
+       <!--upvotes counter-->
+        <li class="list-inline-item" data-toggle="tooltip" title="<%= 'Recall Your' if question.is_upvoted?(current_user) %> Upvote">
         <% if question.is_upvoted?(current_user) %>
           <%= link_to unupvote_question_path(id: question.id), method: :post, style:"text-decoration:none;" do %>
-            <div class="counter p-1 text-dark" data-toggle="tooltip" title="Recall your upvote">
-              <h5 class="m-0"><%= question.upvotes_count %></h5>
-              upvotes
-            </div>
+             <%= render :partial => "shared/question_upvotes", locals: {question: question} %>
           <% end %>
         <% else %>
           <%= link_to upvote_question_path(id: question.id), method: :post, style:"text-decoration:none;" do %>
-            <div class="counter p-1 text-dark" data-toggle="tooltip" title="Upvote it!">
-              <h5 class="m-0"><%= question.upvotes_count %></h5>
-              upvotes
-            </div>
+            <%= render :partial => "shared/question_upvotes", locals: {question: question} %>
           <% end %>
         <% end %>
         </li>
       <!--solutions counter-->
-        <li class="list-inline-item">
+        <li class="list-inline-item" data-toggle="tooltip" title="Answer it" >
           <%= link_to question_path(question, :anchor => "solution"), class: "text-dark", style:"text-decoration:none;" do %>
           <div class="counter p-1 <%= 'border border-success rounded ' if question.solutions_count > 0 %> <%= 'bg-success text-white' if question.solutions_count > 1 %>"> 
             <h5 class="m-0"><%= question.solutions_count %></h5>
@@ -30,24 +25,38 @@
           <% end %>
         </li>
         <!--favorites counter-->
-        <li class="list-inline-item">
+        <li class="list-inline-item" data-toggle="tooltip" title="<%= 'Recall Your' if question.is_favorited?(current_user) %> Favorite">
           <% if question.is_favorited?(current_user) %>
           <%= link_to unfavorite_question_path(id: question.id), method: :post, style:"text-decoration:none;" do %>
-            <div class="counter p-1 text-dark" data-toggle="tooltip" title="Recall your favorite">
-              <h5 class="m-0"><%= question.favorites_count %></h5>
-              fevorites
-            </div>
+            <%= render :partial => "shared/question_favorites", locals: {question: question} %>
           <% end %>
         <% else %>
           <%= link_to favorite_question_path(id: question.id), method: :post, style:"text-decoration:none;" do %>
-            <div class="counter p-1 text-dark" data-toggle="tooltip" title="Favorite it!">
-               <h5 class="m-0"><%= question.favorites_count %></h5>
-              fevorites
-            </div>
+            <%= render :partial => "shared/question_favorites", locals: {question: question} %>
           <% end %>
         <% end %>    
         </li>
       </ul>
+      <% else %>
+        <ul class="list-inline">
+         <!--upvotes counter display only-->
+          <li class="list-inline-item" data-toggle="tooltip" title="Log in before upvote">
+            <%= render :partial => "shared/question_upvotes", locals: {question: question} %>
+          </li>
+        <!--solutions counter display only-->
+          <li class="list-inline-item">
+            <div class="counter p-1 <%= 'border border-success rounded ' if question.solutions_count > 0 %> <%= 'bg-success text-white' if question.solutions_count > 1 %>"> 
+              <h5 class="m-0"><%= question.solutions_count %></h5>
+              answers
+            </div>
+          </li>
+          <!--favorites counter display only-->
+          <li class="list-inline-item" data-toggle="tooltip" title="Log in before favorite">
+            <div class="counter p-1 text-dark" >
+              <%= render :partial => "shared/question_favorites", locals: {question: question} %>
+          </li>
+        </ul>  
+      <% end %>
     </div>
     <!-- Question -->
     <div class="col-9">
