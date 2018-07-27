@@ -88,14 +88,29 @@
       <% @solutions.each do |solution| %>
       <li class="list-group-item">
         <div class="row media">
-          <div class="col-2 fa-3x text-center">
-            <span class="fa-layers fa-fw" data-toggle="tooltip" title="Upvotes the solution">
-              <i class="far fa-thumbs-up text-secondary"></i>
+          <div class="col-3 col-sm-2 fa-3x text-center click">
+          <% if solution.is_upvoted?(current_user) %>
+            <%= link_to unupvote_question_solution_path(id: solution.id, question_id: @question.id), method: :post, style:"text-decoration:none;" do %>
+            <span class="fa-layers fa-fw" data-toggle="tooltip" title="Recall your upvote">
+              <i class="fas fa-thumbs-up text-primary counter"></i>
               <span class="fa-layers-counter" style="background:Tomato">
-                <%= solution.upvotes_count  %>
+                <%= @question.upvotes_count  %>
               </span>
             </span>
+            <% end %>
+          <% else %>  
+              <%= link_to upvote_question_solution_path(id: solution.id, question_id: @question.id), method: :post, style:"text-decoration:none;" do %>
+              <span class="fa-layers fa-fw" data-toggle="tooltip" title="Upvote it">
+                <i class="far fa-thumbs-up text-secondary counter"></i>
+                <span class="fa-layers-counter" style="background:Tomato">
+                  <%= solution.upvotes_count  %>
+                </span>
+              </span>
+            <% end %>
+          <% end %> 
           </div>
+          <br/>
+
           <div class="col-10 media-body">
             <blockquote class="blockquote mb-0">
               <p>

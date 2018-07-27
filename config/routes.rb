@@ -9,7 +9,12 @@ Rails.application.routes.draw do
     end
   end
   resources :questions, only: [:index, :show, :new, :create] do
-    resources :solutions, only: [:create]
+    resources :solutions, only: [:create] do
+      member do
+        post :upvote
+        post :unupvote
+      end
+    end
     member do
       post :favorite
       post :unfavorite

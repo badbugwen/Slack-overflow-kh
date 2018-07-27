@@ -1,9 +1,6 @@
 class UsersController < ApplicationController
 
   before_action :set_user, only: [:edit, :update, :show, :favorite]
-  
-  def index
-  end
 
   def edit
     unless @user == current_user
