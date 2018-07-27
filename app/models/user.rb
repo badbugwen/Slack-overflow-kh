@@ -35,14 +35,18 @@ class User < ApplicationRecord
   validates_presence_of :name, :email
 
   has_many :questions
-  has_many :solutions
-
-  has_many :upvotes, dependent: :destroy
   has_many :upvoted_questions, through: :upvotes, source: :question
+  has_many :solutions
+  has_many :upvoted_solutions, through: :upvotes, source: :question
+  has_many :upvotes, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :favorited_questions, through: :favorites, source: :question
 
-   def self.from_omniauth(auth)
+  def all_received_upvotes
+    self.questions.sum(:upvotes_count) + self.solutions.sum(:upvotes_count)  
+  end
+
+  def self.from_omniauth(auth)
     #case 1: Find existing user bt github uid
     user = User.find_by_gh_uid(auth.uid)
     if user

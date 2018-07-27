@@ -18,8 +18,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @question_count = @user.questions.size
-    @solution_count = @user.solutions.size
+    @top_question_upvotes = @user.questions.maximum(:upvotes_count)
+    @top_solution_upvotes = @user.solutions.maximum(:upvotes_count)
   end
   
   def favorite
