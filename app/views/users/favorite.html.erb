@@ -1,7 +1,7 @@
 <div class="container">
   <div class="card">
     <h5 class="card-header text-center">
-      <%= @favorited_questions.size %> questions in <%= @user.name %>'s favorite list
+      <%= @favorited_questions.size %> question<%= 's' if @favorited_questions.size > 1 %> in <%= @user.name %>'s favorite list
     </h5>
      <ul class="list-group list-group-flush">
       <!--Question list-->

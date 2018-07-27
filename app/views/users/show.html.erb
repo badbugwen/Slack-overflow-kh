@@ -57,7 +57,7 @@
        <li class="list-group-item">
         <h3 class="text-success">
           <strong>
-            <%= @user.questions.size %>/ <%= @top_question_upvotes %>
+            <%= @user.questions.size %>/ <%= @top_question_upvotes %><%= '0' if !@top_question_upvotes %>
           </strong>
         </h3>
         Questions/ Maximum Upvotes in 1 question
@@ -65,7 +65,7 @@
        <li class="list-group-item">
         <h3 class="text-success">
           <strong>
-            <%= @user.solutions.size %>/ <%= @top_solution_upvotes %>
+            <%= @user.solutions.size %>/ <%= @top_solution_upvotes %><%= '0' if !@top_solution_upvotes %>
           </strong>
         </h3>
         Solutions/ Maximum Upvotes in 1 solution

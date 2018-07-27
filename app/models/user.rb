@@ -29,7 +29,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :omniauthable, omniauth_providers: %i[github]
+         :omniauthable, omniauth_providers: [:github]
 
   validates_uniqueness_of :email
   validates_presence_of :name, :email
@@ -70,10 +70,10 @@ class User < ApplicationRecord
     user.gh_token = auth.credentials.token
     user.name = auth.info.name
     user.email = auth.info.email
-    user.intro = auth.info.bio
-    user.company = auth.info.company
-    user.website = auth.info.blog
-    user.github = auth.info.html_url
+    user.intro = auth.extra.raw_info.bio
+    user.company = auth.extra.raw_info.company
+    user.website = auth.extra.raw_info.blog
+    user.github = auth.extra.raw_info.html_url
     user.password = Devise.friendly_token[0,20]
     user.save!  
     return user
