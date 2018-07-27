@@ -86,6 +86,22 @@ namespace :dev  do
     puts "Now you have #{Favorite.count} fake favorites"
   end
 
+  task fake_upvotes: :environment do
+    Upvote.destroy_all
+    # destroy all before create new fake date or the counter will error?
+      20.times do |i|
+        Upvote.create!(
+          user_id: User.all.sample.id,
+          question_id: Question.all.sample.id,
+          )
+        Upvote.create!(
+          user_id: User.all.sample.id,
+          solution_id: Solution.all.sample.id,
+          )
+      end
+    puts "Now you have #{Upvote.count} fake upvotes"
+  end
+
   task rebuild: [
     "db:drop",
     "db:create",
@@ -93,7 +109,9 @@ namespace :dev  do
     "db:seed",
     :fake_users,
     :fake_questions,
-    :fake_solutions
+    :fake_solutions,
+    :fake_favorites,
+    :fake_upvotes
     # 假資料生成寫法似乎有問題，先註解掉，暫時快速用手動方式來收藏吧
     # :fake_favorites
     ]
@@ -103,7 +121,8 @@ namespace :dev  do
     :fake_users,
     :fake_questions,
     :fake_solutions,
-    :fake_favorites
+    :fake_favorites,
+     :fake_upvotes
     ]
 
 end
