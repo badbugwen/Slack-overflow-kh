@@ -18,7 +18,7 @@
           <% end %>
         <% else %>  
             <%= link_to upvote_question_path(id: @question.id), method: :post, style:"text-decoration:none;" do %>
-            <span class="fa-layers fa-fw" data-toggle="tooltip" title="Upvote it">
+            <span class="fa-layers fa-fw" data-toggle="tooltip" title="<%= 'Log in before' if !current_user %> Upvote">
               <i class="far fa-thumbs-up text-secondary counter"></i>
               <span class="fa-layers-counter" style="background:Tomato">
                 <%= @question.upvotes_count  %>
@@ -40,7 +40,7 @@
             <% end %>
           <% else %>  
             <%= link_to favorite_question_path(id: @question.id), method: :post, style:"text-decoration:none;" do %>
-              <span class="fa-layers fa-fw" data-toggle="tooltip" title="Favorite">
+              <span class="fa-layers fa-fw" data-toggle="tooltip" title="<%= 'Log in before' if !current_user %> Favorite">
                 <i class="far fa-star text-secondary counter"></i>
                 <span class="fa-layers-counter" style="background:Tomato">
                   <%= @question.favorites_count  %>
@@ -100,7 +100,7 @@
             <% end %>
           <% else %>  
               <%= link_to upvote_question_solution_path(id: solution.id, question_id: @question.id), method: :post, style:"text-decoration:none;" do %>
-              <span class="fa-layers fa-fw" data-toggle="tooltip" title="Upvote it">
+              <span class="fa-layers fa-fw" data-toggle="tooltip" title="<%= 'Log in before' if !current_user %> Upvote">
                 <i class="far fa-thumbs-up text-secondary counter"></i>
                 <span class="fa-layers-counter" style="background:Tomato">
                   <%= solution.upvotes_count  %>
