@@ -20,6 +20,11 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def hashtags
+    @tag = Tag.find_by(name: params[:name])
+    @questions = @tag.questions
+  end
+
   def show
     @question = Question.find_by(id: params[:id])
     @solutions = @question.solutions.order(created_at: :asc)
@@ -67,6 +72,8 @@ class QuestionsController < ApplicationController
     flash[:alert] = "Your upvote was recalled successfully"
     redirect_back(fallback_location: question_path(id: @question.id))
   end
+
+
 
   private
 

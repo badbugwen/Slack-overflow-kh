@@ -18,6 +18,18 @@ class Question < ApplicationRecord
   has_many :favorited_users, through: :favorites, source: :user
   belongs_to :user
 
+  has_and_belongs_to_many :tags
+
+  after_create do
+    question = Question.find_by(id: self.id)
+    hashtags = self.content.scan(/#\w+/)
+    hashtags.uniq.map do |hashtag|
+      tag = Tag.find_or_create_by(name: hashtag.downcase.delete('#'))
+      question.tags << tag
+    end  
+  end
+
+
   def is_favorited?(user)
     self.favorited_users.include?(user)
   end
@@ -29,4 +41,5 @@ class Question < ApplicationRecord
   def is_soluted?(user)
     self.soluted_users.include?(user)
   end
+
 end
