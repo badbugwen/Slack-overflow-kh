@@ -11,7 +11,16 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
     @question.user_id = current_user.id
+
     if @question.save
+      hashtags = @question.content.scan(/#\w+/)
+      hashtags.uniq.map do |hashtag|
+        tag = @question.tags.find_or_create_by(name: hashtag.downcase.delete('#'))
+        @question.tags << tag
+        unless @question.tags.save
+          render :now
+        end  
+      end  
       flash[:notice] = "Question was successfully created"
       redirect_to questions_url
     else
