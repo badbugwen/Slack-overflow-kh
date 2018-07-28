@@ -21,9 +21,6 @@ class Question < ApplicationRecord
   has_and_belongs_to_many :tags
   validates_associated :tags
 
-  
-
-
   def is_favorited?(user)
     self.favorited_users.include?(user)
   end

@@ -13,15 +13,8 @@ class QuestionsController < ApplicationController
     @question.user_id = current_user.id
 
     if @question.save
-      hashtags = @question.content.scan(/#\w+/)
-      hashtags.uniq.map do |hashtag|
-        tag = @question.tags.find_or_create_by(name: hashtag.downcase.delete('#'))
-        @question.tags << tag
-        unless @question.tags.save
-          render :now
-        end  
-      end  
-      flash[:notice] = "Question was successfully created"
+      create_hashtags
+      flash[:success] = "Question was successfully created"
       redirect_to questions_url
     else
       flash.now[:alert] = "Question was failed to create"
@@ -95,6 +88,20 @@ class QuestionsController < ApplicationController
      flash[:alert] = "Not allow!"
      redirect_to questions_path
     end
+  end
+
+  def create_hashtags
+    hashtags = @question.content.scan(/#\w+/)
+    flash[:alert] = "There are only 3 hashtags allowed in a question" if hashtags.uniq.size > 3
+    hashtags.map do |hashtag|
+      tag = Tag.find_or_create_by(name: hashtag.downcase.delete('#'))
+      if tag.valid?
+        @question.tags << tag if @question.tags.size < 3
+      else
+        tag.destroy
+        flash[:alert] = "hashtag that over 10 charaters is NOT allowed"
+      end  
+    end  
   end
 
 end
