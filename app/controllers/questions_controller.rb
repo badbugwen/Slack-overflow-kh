@@ -14,7 +14,7 @@ class QuestionsController < ApplicationController
 
     if @question.save
       create_hashtags
-      flash[:success] = "Question was successfully created"
+      flash[:notice] = "Question was successfully created"
       redirect_to questions_url
     else
       flash.now[:alert] = "Question was failed to create"

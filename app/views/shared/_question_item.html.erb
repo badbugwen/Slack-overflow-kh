@@ -80,12 +80,10 @@
     <div class="col-9">
       <h5 class="text-primary m1-2"><%= link_to question.title, question_path(question) %>
       </h5>
-      <div class="text-info">
+        <p><%= truncate(question.content, length: 100) %></p>
         <% question.tags.each do|tag| %>
-          <%= link_to tag.name, '/questions/hashtag/tag.name', class:"btn btn-primary" %>
-        <% end %>  
-      </div>
-        <%= truncate(question.content, length: 100) %>
+          <%= link_to tag.name, "/questions/hashtag/#{tag.name}", class:"badge badge-info" %>
+        <% end %>
       <footer class="blockquote-footer float-right">asked by <%= link_to question.user.name, user_path(question.user) %> 
         <cite title="Source Title"><%= time_ago_in_words question.created_at %> ago</cite>
       </footer>
