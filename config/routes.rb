@@ -8,6 +8,10 @@ Rails.application.routes.draw do
       get :favorite
     end
   end
+  get '/questions/tag_all' =>'questions#tag_all', as: :tag_all
+  get '/questions/hashtag/:name' =>'questions#hashtags', as: :hashtag
+  root "questions#index"
+
   resources :questions, only: [:index, :show, :new, :create] do
     resources :solutions, only: [:create] do
       member do
@@ -23,7 +27,4 @@ Rails.application.routes.draw do
       post :unupvote
     end
   end
-
-  get '/questions/hashtag/:name', to:'questions#hashtags'
-  root "questions#index"
 end
