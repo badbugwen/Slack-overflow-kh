@@ -52,7 +52,7 @@ namespace :dev  do
       20.times do |i|
         Question.create!(
           title: FFaker::Lorem::phrase,
-          content: FFaker::Lorem::sentence(200),
+          content: FFaker::Lorem::sentence(150) ,
           user_id: User.all.sample.id,
           )
       end
@@ -73,16 +73,12 @@ namespace :dev  do
 
   task fake_favorites: :environment do
     Favorite.destroy_all
-    # destroy all before create new fake date or the counter will error?
-    for i in 1...Question.count
-      x = Question.find(i)
-      if x != nil
+    20.times do |i|
         Favorite.create!(
-            user_id: User.all.sample.id,
-            question_id: i
+          user_id: User.all.shuffle.pop.id,
+          question_id: Question.all.shuffle.pop.id,
           )
       end
-    end
     puts "Now you have #{Favorite.count} fake favorites"
   end
 
@@ -91,12 +87,12 @@ namespace :dev  do
     # destroy all before create new fake date or the counter will error?
       20.times do |i|
         Upvote.create!(
-          user_id: User.all.sample.id,
-          question_id: Question.all.sample.id,
+          user_id: User.all.shuffle.pop.id,
+          question_id: Question.all.shuffle.pop.id,
           )
         Upvote.create!(
-          user_id: User.all.sample.id,
-          solution_id: Solution.all.sample.id,
+          user_id: User.all.shuffle.pop.id,
+          solution_id: Solution.all.shuffle.pop.id,
           )
       end
     puts "Now you have #{Upvote.count} fake upvotes"
@@ -112,8 +108,7 @@ namespace :dev  do
     :fake_solutions,
     :fake_favorites,
     :fake_upvotes
-    # 假資料生成寫法似乎有問題，先註解掉，暫時快速用手動方式來收藏吧
-    # :fake_favorites
+    
     ]
 
   task rebuild_heroku: [
