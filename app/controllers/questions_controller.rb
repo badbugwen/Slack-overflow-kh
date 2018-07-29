@@ -38,6 +38,10 @@ class QuestionsController < ApplicationController
     end  
   end
 
+  def tag_all
+    @tags = Tag.all
+  end
+
   def show
     @question = Question.find_by(id: params[:id])
     @solutions = @question.solutions.order(created_at: :asc)
