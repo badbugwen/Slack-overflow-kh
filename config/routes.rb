@@ -24,5 +24,6 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/questions/hashtag/:name', to:'questions#hashtags'
   root "questions#index"
 end

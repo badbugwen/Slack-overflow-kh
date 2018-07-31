@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180726063552) do
+ActiveRecord::Schema.define(version: 20180728085321) do
 
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id"
@@ -30,6 +30,13 @@ ActiveRecord::Schema.define(version: 20180726063552) do
     t.integer "favorites_count", default: 0
   end
 
+  create_table "questions_tags", id: false, force: :cascade do |t|
+    t.integer "question_id"
+    t.integer "tag_id"
+    t.index ["question_id"], name: "index_questions_tags_on_question_id"
+    t.index ["tag_id"], name: "index_questions_tags_on_tag_id"
+  end
+
   create_table "solutions", force: :cascade do |t|
     t.string "title"
     t.text "content"
@@ -38,6 +45,12 @@ ActiveRecord::Schema.define(version: 20180726063552) do
     t.integer "user_id"
     t.integer "question_id"
     t.integer "upvotes_count", default: 0
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "upvotes", force: :cascade do |t|
@@ -70,6 +83,8 @@ ActiveRecord::Schema.define(version: 20180726063552) do
     t.datetime "updated_at", null: false
     t.string "gh_uid"
     t.string "gh_token"
+    t.string "gh_provider"
+    t.string "gh_name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

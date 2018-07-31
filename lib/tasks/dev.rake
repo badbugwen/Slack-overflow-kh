@@ -124,5 +124,13 @@ namespace :dev  do
     :fake_favorites,
      :fake_upvotes
     ]
+    
+  task fake_all: [
+    :fake_users,
+    :fake_questions,
+    :fake_solutions,
+    :fake_favorites,
+    :fake_upvotes
+    ]  
 
 end

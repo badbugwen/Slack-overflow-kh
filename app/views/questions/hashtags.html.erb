@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="card">
+    <h5 class="card-header text-center">
+      Question<%='s' if @tag.questions.length > 1 %> with Tag: <%= @tag.name %>
+    </h5>
+     <ul class="list-group list-group-flush">
+      <!--Question list-->
+      <%  @questions.each do |question| %>
+        <%= render :partial => "shared/question_item", locals: {question: question} %>
+      <% end %>
+    </ul>
+  </div> 
+</div>  
