@@ -1,0 +1,21 @@
+<div class="container text-center">
+  <div class="card">
+    <h5 class="card-header text-center">
+      All hashtags
+    </h5>
+   <!--Tag cloud-->
+    <div class="card-body">
+    <% @tags.each do |tag| %>
+      <%= link_to "/questions/hashtag/#{tag.name}", class: "un-linkline" do %>
+        <div class="btn  
+          <%= 'btn-outline-link btn-sm' if tag.questions.size <= 2 %>
+          <%= 'btn-outline-info' if  tag.questions.size > 2 && tag.questions.size <= 5  %>
+          <%= 'btn-info btn-lg' if tag.questions.size > 5 %>
+          ">
+          <%= tag.name %>
+        </div>
+      <% end %>
+    <% end %>
+    </div>
+  </div>    
+</div>  

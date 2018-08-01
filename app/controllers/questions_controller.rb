@@ -23,8 +23,23 @@ class QuestionsController < ApplicationController
   end
 
   def hashtags
-    @tag = Tag.find_by(name: params[:name])
-    @questions = @tag.questions
+    if params[:search]
+      tag = Tag.find_by(name: params[:search])
+        if tag
+          redirect_to "/questions/hashtag/#{tag.name}"
+          params[:name] = params[:search]
+        else
+          flash[:alert] = "Sorry! #{params[:search]} was not found. Here are all hashtags"
+          redirect_to tag_all_path
+       end  
+    else  
+      @tag = Tag.find_by(name: params[:name])
+      @questions = @tag.questions
+    end  
+  end
+
+  def tag_all
+    @tags = Tag.all
   end
 
   def show
